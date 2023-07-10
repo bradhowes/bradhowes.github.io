@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Keystroke Countdown</title>
+        <description>Sporadic musings on software, algorithms, platforms</description>
+        <link>https://keystrokecountdown.com</link>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Sun, 21 May 2023 21:43:25 GMT</lastBuildDate>
+        <atom:link href="https://keystrokecountdown.com/rss.xml" rel="self" type="application/rss+xml"/>
+        <copyright>Copyright © 2016, Brad Howes</copyright>
+        <language>en</language>
+        <managingEditor>bradhowes@mac.com</managingEditor>
+        <item>
+            <title>AUv3 Development -- Part 1 of N</title>
+            <description>Lame attempt to share what I've learned about AUv3 audio units</description>
+            <link>https://keystrokecountdown.com/articles/auv3/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/auv3/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Tue, 16 May 2023 10:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Swift Snapshot Testing in Github Actions</title>
+            <description>Short discussion on how I run snapshot tests in Github CI</description>
+            <link>https://keystrokecountdown.com/articles/knobci/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/knobci/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Sun, 05 Mar 2023 09:06:00 GMT</pubDate>
+        </item>
+        <item>
+            <title>Converting WMA Files to MP3</title>
+            <description>Using FFMpeg toolkit to transcode MWA files to MP3 format</description>
+            <link>https://keystrokecountdown.com/articles/wma/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/wma/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Tue, 19 May 2020 22:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Remarkable Customizations</title>
+            <description>How I customized Remarkable to get what I wanted</description>
+            <link>https://keystrokecountdown.com/articles/remarkable/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/remarkable/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Sun, 12 Apr 2020 00:10:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Automatic Browser Selection</title>
+            <description>Setup on macOS to use Chrome only when at work</description>
+            <link>https://keystrokecountdown.com/articles/browsers/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/browsers/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Mon, 13 May 2019 16:32:24 GMT</pubDate>
+        </item>
+        <item>
+            <title>Generative Images with SVG.js</title>
+            <description>Brief discussion about my first JSFiddle project using SVG.js</description>
+            <link>https://keystrokecountdown.com/articles/genart/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/genart/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Tue, 05 Mar 2019 10:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Simple Image Classification using Logistic Regression</title>
+            <description>Learning about logistic regression models while looking at cat pictures</description>
+            <link>https://keystrokecountdown.com/articles/logistic/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/logistic/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Tue, 09 Oct 2018 17:47:55 GMT</pubDate>
+        </item>
+        <item>
+            <title>Using Kerboros on macOS</title>
+            <description>A post to help me remember some Kerberos commands</description>
+            <link>https://keystrokecountdown.com/articles/kerberos/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/kerberos/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Mon, 01 Oct 2018 11:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Text Language Translation Utility</title>
+            <description>Brief discussion of Node.js utility I use on macOS to translate text between French and English</description>
+            <link>https://keystrokecountdown.com/articles/translate/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/translate/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Mon, 13 Aug 2018 11:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Remapping Keys on macOS High Sierra</title>
+            <description>Short discussion on how I remapped the keys on my MacBook Pro w/ an international layout.</description>
+            <link>https://keystrokecountdown.com/articles/keymaps/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/keymaps/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Fri, 06 Apr 2018 09:06:00 GMT</pubDate>
+        </item>
+        <item>
+            <title>Fixing Azure Let's Encrypt Expired Key</title>
+            <description>Account of what I did to fix a broken Azure Let's Encrypt web job</description>
+            <link>https://keystrokecountdown.com/articles/letencrypt/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/letencrypt/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Sat, 17 Mar 2018 11:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Formatting Console Output</title>
+            <description>Short discussion on how I updated my blog to show formatted console output</description>
+            <link>https://keystrokecountdown.com/articles/console/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/console/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Fri, 16 Mar 2018 09:06:00 GMT</pubDate>
+        </item>
+        <item>
+            <title>[DRAFT] Test Page for CSS Settings</title>
+            <description>Document to validate changes to CSS configuration</description>
+            <link>https://keystrokecountdown.com/articles/layout/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/layout/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Wed, 14 Mar 2018 11:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>[DRAFT] Playing with .Net Core Apps and Docker on a Mac</title>
+            <description>A brief look at using Docker containers to run a C# app</description>
+            <link>https://keystrokecountdown.com/articles/docker/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/docker/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Wed, 14 Mar 2018 11:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Different (Key)strokes for Different Folks</title>
+            <description>Short discussion on how I configured AutoHotKey to minimize my typing errors in Windows.</description>
+            <link>https://keystrokecountdown.com/articles/autohotkey/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/autohotkey/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Mon, 09 Oct 2017 09:06:00 GMT</pubDate>
+        </item>
+        <item>
+            <title>Apple iTunes Library Manipulation with Python</title>
+            <description>Short discussion on using Python to manipulate the contents of an iTunes Library XML file.</description>
+            <link>https://keystrokecountdown.com/articles/itunes/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/itunes/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Mon, 26 Jun 2017 09:06:00 GMT</pubDate>
+        </item>
+        <item>
+            <title>Metalsmith Plugins for Server-side KaTeX Processing</title>
+            <description>Brief description of updates I've made to my blog rendering tool-chain to remove in-browser KaTeX processing</description>
+            <link>https://keystrokecountdown.com/articles/metalsmith2/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/metalsmith2/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Mon, 12 Jun 2017 10:43:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Arrival Intervals of a Poisson Process</title>
+            <description>Arrival Intervals of a Poisson Process.</description>
+            <link>https://keystrokecountdown.com/articles/poisson/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/poisson/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Thu, 08 Jun 2017 13:57:55 GMT</pubDate>
+        </item>
+        <item>
+            <title>Framework Bundles in Xcode and CocoaPods</title>
+            <description>Short discussion about an issue I had fetching a bundle in Xcode and CocoaPods</description>
+            <link>https://keystrokecountdown.com/articles/cocoapods/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/cocoapods/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Mon, 06 Mar 2017 11:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Signing Embedded Frameworks in an Embedded Framework</title>
+            <description>Short discussion about an issue I had using an embedded framework that itself contained embedded frameworks</description>
+            <link>https://keystrokecountdown.com/articles/signing/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/signing/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Tue, 14 Feb 2017 11:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Variable Height UITableView Cells in Swift</title>
+            <description>Documents code necessary to achieve fast variable-height cells that use Auto Layout</description>
+            <link>https://keystrokecountdown.com/articles/vhtc/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/vhtc/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Sat, 07 Jan 2017 11:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>JoyStickView for iOS in Swift</title>
+            <description>Documents how I implemented a joy stick control view for a Swift iOS project</description>
+            <link>https://keystrokecountdown.com/articles/joystick/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/joystick/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Tue, 06 Dec 2016 10:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Dependency Injection for iOS in Swift</title>
+            <description>Documents how I implemented dependency injection in a Swift iOS project</description>
+            <link>https://keystrokecountdown.com/articles/dependencyInjection/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/dependencyInjection/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Sat, 08 Oct 2016 10:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Working with Core Plot</title>
+            <description>Shows how to add and control Core Plot graphs</description>
+            <link>https://keystrokecountdown.com/articles/corePlot/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/corePlot/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Wed, 28 Sep 2016 15:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Sliding UIViews with Core Animation</title>
+            <description>Shows how to easily animate sliding UIViews for a nice visual effect</description>
+            <link>https://keystrokecountdown.com/articles/slidingViews/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/slidingViews/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Wed, 28 Sep 2016 10:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Adding Binary Search to Swift Collections</title>
+            <description>My first foray into extending Swift's Collection protocol in order to provide fast searching of ordered elements.</description>
+            <link>https://keystrokecountdown.com/articles/swiftCollection/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/swiftCollection/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Fri, 23 Sep 2016 10:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Metalsmith Static Site on Azure</title>
+            <description>Where I describe how I use Metalsmith to run a static site blog on Azure</description>
+            <link>https://keystrokecountdown.com/articles/metalsmith/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/metalsmith/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Tue, 30 Aug 2016 07:56:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Bloom Filters in Python</title>
+            <description>Bloom Filter can quickly and accurately determine if a given key is not part of a set of keys.</description>
+            <link>https://keystrokecountdown.com/articles/bloom/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/bloom/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Tue, 03 May 2016 11:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Testing IPython</title>
+            <description>Test page showing how to use IPython content to make a blog post.</description>
+            <link>https://keystrokecountdown.com/articles/Testing%20IPython/testing-ipython.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/Testing%20IPython/testing-ipython.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Mon, 02 May 2016 11:47:55 GMT</pubDate>
+        </item>
+        <item>
+            <title>Decrypting Logs in Python</title>
+            <description>A tutorial on how to properly use cryptography libraries available in Python.</description>
+            <link>https://keystrokecountdown.com/articles/decrypt/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/decrypt/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Mon, 02 May 2016 10:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Power of Optimal Algorithm Design</title>
+            <description>A brief look at how a simple choice in algorithm implementation can greatly affect performance.</description>
+            <link>https://keystrokecountdown.com/articles/power/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/power/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Sun, 01 May 2016 11:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>PDM Playground</title>
+            <description>Trying to understand PDM audio.</description>
+            <link>https://keystrokecountdown.com/articles/PDMPlayground/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/PDMPlayground/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Sat, 30 Jan 2016 13:57:55 GMT</pubDate>
+        </item>
+        <item>
+            <title>B-Scope Radar Display</title>
+            <description>A rectilinear display of radar returns</description>
+            <link>https://keystrokecountdown.com/articles/bscope/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/bscope/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Tue, 13 Oct 2009 11:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>A-Scope Signal Display</title>
+            <description>A multi-channel signal display I wrote in Qt</description>
+            <link>https://keystrokecountdown.com/articles/ascope/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/ascope/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Mon, 12 Oct 2009 11:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Radar Display</title>
+            <description>A radar display app I wrote in Qt and OpenGL</description>
+            <link>https://keystrokecountdown.com/articles/radardisplay/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/radardisplay/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Fri, 09 Oct 2009 11:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>Visualizing Traffic at DFW Airport</title>
+            <description>An example of my early (and crude) visualization work at MIT/LL with surveillance systems data.</description>
+            <link>https://keystrokecountdown.com/articles/dfwtraffic/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/dfwtraffic/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Thu, 08 Oct 2009 11:18:02 GMT</pubDate>
+        </item>
+    </channel>
+</rss>

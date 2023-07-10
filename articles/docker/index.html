@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang=en-US><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="IE=edge"><title>[DRAFT] Playing with .Net Core Apps and Docker on a Mac | Keystroke Countdown</title><meta name=author content="[object Object]"><meta name=robots content="index, follow"><meta name=HandheldFriendly content=True><meta name=description content="A brief look at using Docker containers to run a C# app"><link rel=author href=/humans.txt><link rel=icon type=image/png href=/images/favicon.png><link rel=stylesheet href=/css/all-219136742a6fdee2bdc61d07f9ed89cc.css></head><body class="post-template nav-closed"><div class="nav nav-closed" id=nav><h3 class=nav-title>Menu</h3><a href=# class=nav-close><span class=hidden>Close</span></a><ul class=nav-list><li class=nav-home role=presentation><a href=/ ><i class="fa fa-home" aria-hidden=true></i> Home</a></li><li class=nav-home role=presentation><a href=/about><i class="fa fa-info-circle" aria-hidden=true></i> About Me</a></li><li class=nav-nome role=presentation><a href=/rss.xml><i class="fa fa-rss" aria-hidden=true></i> Subscribe</a> <a href="https://validator.w3.org/feed/check.cgi?url=https%3A//keystrokecountdown.com/rss.xml"><img src=/images/valid-rss-rogers.png alt="[Valid RSS]" title="Validate my RSS feed"></a></li><li class=nav-home role=presentation><a href=/topics><i class="fa fa-tags" aria-hidden=true></i> Topics</a></li><br><li class=nav-home role=presentation><a href=/articles/auv3/index.html>AUv3 Development -- Part 1 of N</a></li><li class=nav-home role=presentation><a href=/articles/knobci/index.html>Swift Snapshot Testing in Github Actions</a></li><li class=nav-home role=presentation><a href=/articles/wma/index.html>Converting WMA Files to MP3</a></li><li class=nav-home role=presentation><a href=/articles/remarkable/index.html>Remarkable Customizations</a></li><li class=nav-home role=presentation><a href=/articles/browsers/index.html>Automatic Browser Selection</a></li><li class=nav-home role=presentation><a href=/articles/genart/index.html>Generative Images with SVG.js</a></li><li class=nav-home role=presentation><a href=/articles/logistic/index.html>Simple Image Classification using Logistic Regression</a></li><li class=nav-home role=presentation><a href=/articles/kerberos/index.html>Using Kerboros on macOS</a></li><li class=nav-home role=presentation><a href=/articles/translate/index.html>Text Language Translation Utility</a></li><li class=nav-home role=presentation><a href=/articles/keymaps/index.html>Remapping Keys on macOS High Sierra</a></li><li class=nav-home role=presentation><a href=/articles/letencrypt/index.html>Fixing Azure Let&#x27;s Encrypt Expired Key</a></li><li class=nav-home role=presentation><a href=/articles/console/index.html>Formatting Console Output</a></li><li class=nav-home role=presentation><a href=/articles/layout/index.html>[DRAFT] Test Page for CSS Settings</a></li><li class=nav-home role=presentation><a href=/articles/docker/index.html>[DRAFT] Playing with .Net Core Apps and Docker on a Mac</a></li><li class=nav-home role=presentation><a href=/articles/autohotkey/index.html>Different (Key)strokes for Different Folks</a></li><li class=nav-home role=presentation><a href=/articles/itunes/index.html>Apple iTunes Library Manipulation with Python</a></li><li class=nav-home role=presentation><a href=/articles/metalsmith2/index.html>Metalsmith Plugins for Server-side KaTeX Processing</a></li><li class=nav-home role=presentation><a href=/articles/poisson/index.html>Arrival Intervals of a Poisson Process</a></li><li class=nav-home role=presentation><a href=/articles/cocoapods/index.html>Framework Bundles in Xcode and CocoaPods</a></li><li class=nav-home role=presentation><a href=/articles/signing/index.html>Signing Embedded Frameworks in an Embedded Framework</a></li><li class=nav-home role=presentation><a href=/articles/vhtc/index.html>Variable Height UITableView Cells in Swift</a></li><li class=nav-home role=presentation><a href=/articles/joystick/index.html>JoyStickView for iOS in Swift</a></li><li class=nav-home role=presentation><a href=/articles/dependencyInjection/index.html>Dependency Injection for iOS in Swift</a></li><li class=nav-home role=presentation><a href=/articles/corePlot/index.html>Working with Core Plot</a></li><li class=nav-home role=presentation><a href=/articles/slidingViews/index.html>Sliding UIViews with Core Animation</a></li><li class=nav-home role=presentation><a href=/articles/swiftCollection/index.html>Adding Binary Search to Swift Collections</a></li><li class=nav-home role=presentation><a href=/articles/metalsmith/index.html>Metalsmith Static Site on Azure</a></li><li class=nav-home role=presentation><a href=/articles/bloom/index.html>Bloom Filters in Python</a></li><li class=nav-home role=presentation><a href="/articles/Testing IPython/testing-ipython.html">Testing IPython</a></li><li class=nav-home role=presentation><a href=/articles/decrypt/index.html>Decrypting Logs in Python</a></li><li class=nav-home role=presentation><a href=/articles/power/index.html>Power of Optimal Algorithm Design</a></li><li class=nav-home role=presentation><a href=/articles/PDMPlayground/index.html>PDM Playground</a></li><li class=nav-home role=presentation><a href=/articles/bscope/index.html>B-Scope Radar Display</a></li><li class=nav-home role=presentation><a href=/articles/ascope/index.html>A-Scope Signal Display</a></li><li class=nav-home role=presentation><a href=/articles/radardisplay/index.html>Radar Display</a></li><li class=nav-home role=presentation><a href=/articles/dfwtraffic/index.html>Visualizing Traffic at DFW Airport</a></li></ul></div><span class=nav-cover></span><div class=site-wrapper><header class="main-header post-head" style="background-image: url(/articles/docker/docker.png)"><nav class="main-nav overlay clearfix"><a class="menu-button icon-menu" href=#><span class=word>Menu</span></a></nav></header><main class=content role=main><article class=post><header class=post-header><h1 class=post-title><a href=/ >[DRAFT] Playing with .Net Core Apps and Docker on a Mac</a></h1><section class=post-meta><time class=post-date datetime="Wed Mar 14 2018 12:18:02 GMT+0100 (Central European Standard Time)">Mar 14th, 2018</time> <a class=post-date href=/topics><i class="fa fa-tags" aria-hidden=true></i></a> <a class=post-date href=/topics/c.html>C# (1)</a> • <a class=post-date href=/topics/docker.html>Docker (1)</a> • <a class=post-date href=/topics/dotnet.html>dotnet (1)</a> • <a class=post-date href=/topics/draft.html>DRAFT (2)</a></section></header><section class=post-content><p>Ages ago I checked out <a href=https://docker.com>Docker</a> to see what all the excitement was about. It looked pretty cool, but I did not really have a specific need for it. A couple of years ago, I encountered it again while I was doing some development work involving a <a href=https://mattermost.org>Mattermost</a> chat server – the default development environment depended on Docker containers. For a prototype service, I had a database in a Docker container that was hosted in a Ubuntu VM running on Azure.</p><p>I now work for a company (<a href=https://criteo.com>Criteo</a>) that is heavily invested in Microsoft’s C#/.Net ecosystem. There is also a fair amount of Scala/Java (and a much lesser amount of Python), but the heavy-duty apps are mostly if not all in C#. With the steady progress of Microsoft’s <a href=https://www.microsoft.com/net/ >.Net Core</a> initiative, one can seriously consider hosting a C# .Net application on a platform other than Windows. And with services such as Marathon and Kubernetes, deploying and scaling an application in a container is fairly pretty trivial.</p><p>As I am still a big fan of working on a macOS platform, I was curious to see how far I could go with the following goals in mind:</p><ul><li>Develop a simple C# webapp on my Mac laptop</li><li>Have the webapp communicate with <a href=https://www.mysql.com>MySql</a> (also running on laptop)</li><li>Have the webapp use <a href=https://redis.io>Redis</a> as a key/value cache (<em>also</em> on laptop)</li><li>Have all of the above running in separate Docker containers</li><li>Attempt to debug the webapp while it is running in a container</li></ul><p>As I show below, this is all easily doable today.</p><h1>Coding in Visual Studio Code</h1><p>Without question, the most powerful code editor for C# is Microsoft’s venerable <a href=https://www.visualstudio.com/vs/ >Visual Studio IDE</a> on Windows OS. This is what I normally use at work. The only downside is that it is huge and like much of Microsoft Office so full of functions and UI gadgets that one can easily get lost. Now, Microsoft has variants of Visual Studio available for macOS, and – woah! – Linux. The Linux one is very spartan, but sometimes spartan is good. The spartan version also runs fine on macOS, so I decided to give that a spin on my laptop. Here is what it looks like:</p><p><img src=vscode_960.png title="" srcset="vscode_480.png 480w,vscode_650.png 650w,vscode_960.png 960w,vscode_1440.png 1440w" sizes="(min-width: 960px) 960px, calc(100vw-6rem)"></p><p>Pretty neat! One of the really nice bits is that the cursor movement keystrokes I am used to from years of Emacs coding work here as well. Nicer still, there is a form of Microsoft’s acclaimed <a href=https://msdn.microsoft.com/en-us/library/hcw1s69b.aspx>IntelliSense</a> here which offers suggestions for variables, class names, and such. And often when things go wrong, there are helpful hints for a useful solution (not always – I’ve solved more than one confounding error message with a trip to <a href=https://stackoverflow.com/company>Stack Overflow</a> – but this is no different than macOS Xcode).</p><h1>.Net Core</h1><p>To build an app in C#, one needs to install the <a href=https://www.microsoft.com/net/download/macOS/build>.NET Core SDK</a>. This is easy to do and straightforward. Alternatively, one can also develop a .NET app <em>inside a Docker container</em>. No need for that here, but it is a pretty cool option.</p><p>Once installed, there is a <code>dotnet</code> program available at your local command-line:</p><pre class=language-console><code class=language-console><span class=command-line-prompt><span data-prompt=%></span><span data-prompt=" "></span></span><span class=command-line-command>dotnet --version</span>
+2.1.101</code></pre><p>The VS Code UI application will use this when compiling and packaging .NET applications. However, <em>everything</em> you can do in VS Code can also be done in a shell, though with a bit more typing.</p><h1>Docker on Mac</h1><p>On Linux, Docker is little more than a set of command-line applications and libraries that leverage the capabilities of the Linux kernel to provide very light-weight virtualization of applications in Docker containers. On Windows and Mac, this is a bit more involved (more so on Windows), yet the result is the same: a cross-platform environment for creating isolated application containers that can run anywhere where Docker is installed (think Java’s “write once, run anywhere” mantra but for real, and with less typing).</p><p>There are numerous references on the web about Docker and how to use it, so I will just denote the fundamentals here:</p><ul><li>Docker <em>images</em> define an environment where an app will run</li><li>Docker <em>containers</em> are instantiations of an image that can be started and stopped, and most importantly <em>swarmed</em></li><li>Docker <em>volumes</em> are virtual disks that can be managed just like files</li><li>Docker <em>networks</em> are virtual networks that can be configured at will without disturbing the host network</li></ul><p>The setup I will describe below uses all of these concepts. The big win here, in my humble opinion, is that each component does just what it needs to do (separation of concerns) while handling various use-cases such as</p><ul><li>App development and unit testing with container mocks (think RESTful interfaces)</li><li>Integration testing using data found on test volumes</li><li>Production app swarms using features found in Microsoft’s Azure or Amazon’s AWS</li></ul><p>In short, using Docker allows one to compartmentalize various aspects of a production service such that one’s confidence will be high that what one creates on a laptop/desktop while stuck on an island will translate into an application that works when deployed at a larger scale under Marathon or Kubernetes.</p><h1>Test App</h1><p>The setup I will demonstrate comes from the book <a href=https://www.amazon.com/Essential-Docker-ASP-NET-Core-MVC/dp/1484227778>“Essential Docker for ASP.NET Core MVC”</a> by Adam Freeman. It consists of two services, an ASP .NET application in C# that offers an HTTP service, and a MySql database that provides data to be used by the first – pretty simple stuff.</p><p><img src=DockerExample_960.png title="" srcset="DockerExample_480.png 480w,DockerExample_650.png 650w,DockerExample_960.png 960w,DockerExample_1440.png 1440w" sizes="(min-width: 960px) 960px, calc(100vw-6rem)"></p><p>One aspect of this simple app that I have no experience with is the <a href="https://msdn.microsoft.com/en-us/library/aa937723(v=vs.113).aspx">Entity Framework</a> that does wonders for managing schema models declared in code. It performs much of the necessary magic when working with a database without a bunch of headaches – it (more or less) just works.</p><h1>Back to Docker</h1><p>First, let’s create our MySql container. We should probably isolate the database storage from the MySql container so that we won’t lose the data when the container goes away. There is not much we can do with a Docker volume besides declaring it, but we the volume can outlive a container which is really what we want.</p><pre class=language-console><code class=language-console><span class=command-line-prompt><span data-prompt=%></span><span data-prompt=" "></span></span><span class=command-line-command>docker volume create --name productdata</span>
+productdata</code></pre><p>Next, we fetch a MySql Docker <em>image</em> and use it to build a container we will use in the future:</p><pre class=language-console><code class=language-console><span class=command-line-prompt><span data-prompt=%></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span></span><span class=command-line-command>docker pull mysql:5.7.21</span>
+5.7.21: Pulling from library/mysql
+2a72cbf407d6: Pull complete
+38680a9b47a8: Pull complete
+4c732aa0eb1b: Pull complete
+c5317a34eddd: Pull complete
+f92be680366c: Pull complete
+e8ecd8bec5ab: Pull complete
+2a650284a6a8: Pull complete
+5b5108d08c6d: Pull complete
+beaff1261757: Pull complete
+c1a55c6375b5: Pull complete
+8181cde51c65: Pull complete
+Digest: sha256:691c55aabb3c4e3b89b953dd2f022f7ea845e5443954767d321d5f5fa394e28c
+Status: Downloaded newer image for mysql:latest</code></pre><p>I specify the version I want (5.7.21) so that I can always reproduce the environment I’m describing here. Alternatively, I could omit the version tag and just pull whatever someone thinks is the latest version.</p><p>We should now be able to instantiate a new MySql app running in a container, but just for kicks let’s also create a Docker network for our app to use for our services:</p><pre class=language-console><code class=language-console><span class=command-line-prompt><span data-prompt=%></span><span data-prompt=" "></span></span><span class=command-line-command>docker network create app-network</span>
+aaf5ef7ae7ec3be7c071cd4d8e17dcbde556b6e430cdbfbb88b4d38d00fa754e</code></pre><p>One last step – put some authentication data into a local file:</p><pre class=language-console><code class=language-console><span class=command-line-prompt><span data-prompt=%></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span></span><span class=command-line-command>cat &gt; mysql.cfg &lt;&lt; +EOT+</span>
+&gt; MYSQL_USER=admin
+&gt; MYSQL_PASSWORD=my-secret-password
+&gt; ^D</code></pre><p>Now, let’s create and run a <em>new</em> MySql container that reads from/writes to the <code>productdata</code> volume and that communicates over the <code>app-network</code>:</p><pre class=language-console><code class=language-console><span class=command-line-prompt><span data-prompt=%></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span></span><span class=command-line-command>docker run -it --name mysql --volume productdata:/var/lib/mysql --mount type=bind,source=&quot;${PWD}/mysql.cfg&quot;,target=/run/secrets/mysql.cfg --network app-network -p 3306:3306 -e MYSQL_ROOT_PASSWORD_FILE=/run/secrets/mysql.cfg mysql:5.7.21</span>
+2018-03-20T16:18:23.492322Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defa\
+ults_for_timestamp server option (see documentation for more details).
+2018-03-20T16:18:23.493455Z 0 [Note] mysqld (mysqld 5.7.21) starting as process 1 ...
+...
+2018-03-20T16:18:23.634961Z 0 [Note] mysqld: ready for connections.
+Version: '5.7.21'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)</code></pre><p>The However, we want to run with an abstracted network, so:</p><p>Here we define a new virtual network called <code>app</code> with which we can do what we want with Docker managing state among the participating containers;</p><pre class=language-console><code class=language-console><span class=command-line-prompt><span data-prompt=%></span><span data-prompt=" "></span><span data-prompt=%></span><span data-prompt=" "></span><span data-prompt=%></span><span data-prompt=" "></span></span><span class=command-line-command>docker stop $(docker ps -aq)</span>
+6859730ef4c2
+<span class=command-line-command>docker rm $(docker ps -aq)</span>
+6859730ef4c2
+<span class=command-line-command>docker run -d --network app --name mysql --volume productdata:/var/lib/mysql -p 3306:3306 mysql</span>
+91ec3f65f81db018747a74c4e9dd5006bd6d33e140008513469f8683e561ada3</code></pre><p>Now, we have a self-contained MySql application that is only reachable by other entities that know about the <code>app</code> network.</p><h1>ExampleApp Container</h1><p>The <a href="">code</a> for the ExampleApp will compile and run, but on its own it will not find the database to connect to since it is cannot <em>see</em> the connections available in the <code>app</code> network. But, first to build:</p><pre class=language-console><code class=language-console><span class=command-line-prompt><span data-prompt=%></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span></span><span class=command-line-command>dotnet build</span>
+Microsoft (R) Build Engine version 15.6.82.30579 for .NET Core
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Restore completed in 63.06 ms for /Users/howes/src/dotnet/ExampleApp/ExampleApp.csproj.
+  Restore completed in 85.27 ms for /Users/howes/src/dotnet/ExampleApp/ExampleApp.csproj.
+  Restore completed in 45.38 ms for /Users/howes/src/dotnet/ExampleApp/ExampleApp.csproj.
+  ExampleApp -&gt; /Users/howes/src/dotnet/ExampleApp/bin/Debug/netcoreapp2.0/ExampleApp.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.75</code></pre><p>We have successfully compiled a .NET application, which can be found in <code>bin/Debug/netcoreapp2.0/ExampleApp.dll</code> of the current directory. However, we want this to be in a Docker container so we define one to hold it with the following <code>Dockerfile</code> definition in <code>Debug.dockerfile</code>:</p><pre class=language-docker><code class=language-docker><span class="token instruction"><span class="token keyword">FROM</span> microsoft/aspnetcore:latest</span>
+
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /app</span>
+
+<span class="token comment"># Install CURL so we can install the debugger installer</span>
+<span class="token instruction"><span class="token keyword">RUN</span> apt-get update</span>
+<span class="token instruction"><span class="token keyword">RUN</span> apt-get install curl -y unzip</span>
+
+<span class="token comment"># Fetch the script which does the actual installation</span>
+<span class="token instruction"><span class="token keyword">RUN</span> curl -o GetVsDbg.sh -L http://aka.ms/getvsdbgsh</span>
+
+<span class="token comment"># Execute the script and clean up</span>
+<span class="token instruction"><span class="token keyword">RUN</span> bash GetVsDbg.sh -v latest -l .</span>
+<span class="token instruction"><span class="token keyword">RUN</span> rm -f GetVsDbg.sh</span>
+
+<span class="token comment"># Install the application</span>
+<span class="token instruction"><span class="token keyword">ADD</span> ./output /app</span>
+
+<span class="token instruction"><span class="token keyword">ENTRYPOINT</span> [<span class="token string">"dotnet"</span>, <span class="token string">"ExampleApp.dll"</span>]</span>
+</code></pre><p>The above accomplishes two things:</p><ul><li>Installs the <code>vsdbg</code> executable for debugging the application running in the container</li><li>Installs (copies) all of the code from the host (laptop) to the container</li></ul><p>To make the application available for the container, we must run</p><pre class=language-console><code class=language-console><span class=command-line-prompt><span data-prompt=%></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span></span><span class=command-line-command>dotnet publish -o outout</span>
+Microsoft (R) Build Engine version 15.6.82.30579 for .NET Core
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Restore completed in 77.85 ms for /Users/howes/src/dotnet/ExampleApp/ExampleApp.csproj.
+  Restore completed in 93.6 ms for /Users/howes/src/dotnet/ExampleApp/ExampleApp.csproj.
+  Restore completed in 132.02 ms for /Users/howes/src/dotnet/ExampleApp/ExampleApp.csproj.
+  ExampleApp -&gt; /Users/howes/src/dotnet/ExampleApp/bin/Debug/netcoreapp2.0/ExampleApp.dll
+  ExampleApp -&gt; /Users/howes/src/dotnet/ExampleApp/output/</code></pre><p>Here we ask that the artifacts from the build go into the directory <code>output</code> – by default they will go into a directory like <code>bin/Debug/netcoreapp2.0/publish/</code> (depending on the build settings).</p><p>Next, we need to make a Docker container with the artifacts from the publish step above. We use the Dockerfile definition from above:</p><pre class=language-console><code class=language-console><span class=command-line-prompt><span data-prompt=%></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span></span><span class=command-line-command>docker build --rm --tag app -f Debug.dockerfile ./</span>
+Sending build context to Docker daemon  12.37MB
+Step 1/9 : FROM microsoft/aspnetcore:latest
+ ---&gt; b1a5de255274
+Step 2/9 : WORKDIR /app
+Removing intermediate container f9b5ded53bf2
+ ---&gt; 42b9240be77c
+Step 3/9 : RUN apt-get update
+...
+Step 4/9 : RUN apt-get install curl -y unzip
+ ---&gt; Running in 9480c3853379
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libcurl3
+...
+Setting up curl (7.52.1-5+deb9u5) ...
+Removing intermediate container 9480c3853379
+ ---&gt; b88383df51ef
+Step 5/9 : RUN curl -o GetVsDbg.sh -L http://aka.ms/getvsdbgsh
+ ---&gt; Running in 51c89b703897
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   188  100   188    0     0   1595      0 --:--:-- --:--:-- --:--:--  1606
+100 10366  100 10366    0     0  12932      0 --:--:-- --:--:-- --:--:-- 94236
+Removing intermediate container 51c89b703897
+ ---&gt; d3720541a638
+Step 6/9 : RUN bash GetVsDbg.sh -v latest -l .
+ ---&gt; Running in 65c99c7eb3e3
+Using arguments
+    Version                    : 'latest'
+    Location                   : '/app'
+    SkipDownloads              : 'false'
+    LaunchVsDbgAfter           : 'false'
+    RemoveExistingOnUpgrade    : 'false'
+Info: Using vsdbg version '15.1.11011.1'
+Info: Previous installation at /app not found
+Info: Using Runtime ID 'linux-x64'
+Downloading https://vsdebugger.azureedge.net/vsdbg-15-1-11011-1/vsdbg-linux-x64.zip
+Info: Successfully installed vsdbg at '/app'
+Removing intermediate container 65c99c7eb3e3
+ ---&gt; 1904f0064698
+Step 7/9 : RUN rm -f GetVsDbg.sh
+ ---&gt; Running in 0f9a7133906e
+Removing intermediate container 0f9a7133906e
+ ---&gt; 1070577aeec3
+Step 8/9 : ADD ./output /app
+ ---&gt; c1030ab300b5
+Step 9/9 : ENTRYPOINT [&quot;dotnet&quot;, &quot;ExampleApp.dll&quot;]
+ ---&gt; Running in 26576ccf7c1e
+Removing intermediate container 26576ccf7c1e
+ ---&gt; 86a4e9b3937a
+Successfully built 86a4e9b3937a
+Successfully tagged app:latest</code></pre><p>That’s quite a bit of output, but the good news is everything succeeded, and the other good news is that it will be much faster the next time due to caching of artifacts by Docker – there won’t be a need to install <code>curl</code> in the container or fetch the <code>vsdbg</code> image, so future builds will just copy the application code.</p><p>We can now start the app in the container to see if it all works:</p><pre class=language-console><code class=language-console><span class=command-line-prompt><span data-prompt=%></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span><span data-prompt=" "></span></span><span class=command-line-command>docker run -it --network app --name app -p 8000:80 app</span>
+warn: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[35]
+      No XML encryptor configured. Key {5ebf0ed1-b43c-49e5-8664-fb3efb86cafd} may be persisted to storage in unencrypted form.
+Hosting environment: Production
+Content root path: /app
+Now listening on: http://[::]:80
+Application started. Press Ctrl+C to shut down.</code></pre><p>Here, we connect port 8000 on the laptop to port 80 of the container so as not to conflict with anything else that may be using that port on the laptop.</p><p>We won’t attempt to go to the database until there is an incoming request, so visit <a href=http://localhost:8000>http://localhost:8000</a>. If everything works correctly this should appear:</p><p><img src=browser_960.png title="" srcset="browser_480.png 480w,browser_650.png 650w,browser_960.png 960w,browser_1440.png 1440w" sizes="(min-width: 960px) 960px, calc(100vw-6rem)"></p></section><footer class=post-footer><figure class=author-image><a class=img href=https://keystrokecountdown.com style=background-image:url(/images/HarrisonsLaugh.png)><span class=hidden>Brad Howes's Picture</span></a></figure><section class=author><h4><a href=https://keystrokecountdown.com>Brad Howes</a></h4><p>Owner <a href=https://apps.apple.com/us/developer/b-ray-software/id430573224>B-Ray Software</a>. Programmer in C++, Swift, Python, Javascript and more. Started out doing punch cards in FORTRAN.</p><div class=author-meta><span class="author-location icon-location">Paris, France</span> <span class="author-link icon-link"><a href=http://linkedin.com/in/bradhowes>http://linkedin.com/in/bradhowes</a></span> <span class="author-link icon-feed"><a href=mailto:bradhowes@mac.com>&nbsp;Email Me</a></span></div></section><section class=share><h4>Share this page</h4><div class=social-icons><a class=icon-twitter href="https://twitter.com/intent/tweet?text=%5BDRAFT%5D%20Playing%20with%20.Net%20Core%20Apps%20and%20Docker%20on%20a%20Mac&amp;url=https%3A%2Fkeystrokecountdown.com%2Farticles%2Fdocker%2Findex.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><span class=hidden>Twitter</span> </a><a class=icon-feed href="mailto:bradhowes@mac.com?subject=Curiosity&body=https%3A%2Fkeystrokecountdown.com%2Farticles%2Fdocker%2Findex.html"><span class=hidden>Email</span></a></div></section></footer></article></main><aside class=read-next><a class=read-next-story style="background-image: url(/articles/autohotkey/banner.png)" href=/articles/autohotkey/index.html><section class=post><h2>Different (Key)strokes for Different Folks</h2><div class=post-meta>Short discussion on how I configured AutoHotKey to minimize my typing errors in Windows.</div></section></a><a class="read-next-story prev" style="background-image: url(/articles/layout/docker.png)" href=/articles/layout/index.html><section class=post><h2>[DRAFT] Test Page for CSS Settings</h2><div class=post-meta>Document to validate changes to CSS configuration</div></section></a></aside><footer class="site-footer clearfix"><section class=copyright><a href=https://keystrokecountdown.com>Keystroke Countdown</a> &copy; <span id=copyrightYear>2018</span> Brad Howes — <a href=https://github.com/bradhowes/keystrokecountdown>Source</a></section></footer></div><script>(function () {
+      var installClickHandlers = function () {
+        var navElement = document.getElementById("nav");
+    
+        // The click handler just toggles classes to do the showing/hiding
+        //
+        var clickHandler = function(e) {
+          document.body.classList.toggle("nav-opened");
+          document.body.classList.toggle("nav-closed");
+          if (navElement) {
+            navElement.classList.toggle("nav-opened");
+            navElement.classList.toggle("nav-closed");
+          }
+        };
+    
+        // Find elements we wish to tap for click events
+        //
+        var elements = Array.prototype.slice.call(
+          document.querySelectorAll(".menu-button, .nav-cover, .nav-close"));
+        if (elements && elements.length > 0) {
+          elements.forEach(function (element) {
+            element.addEventListener('click', clickHandler);
+          });
+        }
+      };
+    
+      // When the document is finished loading, install event handlers to show/hide sidebar menu
+      //
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        installClickHandlers();
+    
+        // Set the copyright year at the bottom of our pages
+        //
+        window.document.getElementById("copyrightYear").innerHTML = (new Date()).getFullYear();
+      });
+    })();</script></body></html>

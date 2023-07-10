@@ -1,0 +1,340 @@
+<!DOCTYPE html><html lang=en-US><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="IE=edge"><title>Sliding UIViews with Core Animation | Keystroke Countdown</title><meta name=author content="[object Object]"><meta name=robots content="index, follow"><meta name=HandheldFriendly content=True><meta name=description content="Shows how to easily animate sliding UIViews for a nice visual effect"><link rel=author href=/humans.txt><link rel=icon type=image/png href=/images/favicon.png><link rel=stylesheet href=/css/all-219136742a6fdee2bdc61d07f9ed89cc.css></head><body class="post-template nav-closed"><div class="nav nav-closed" id=nav><h3 class=nav-title>Menu</h3><a href=# class=nav-close><span class=hidden>Close</span></a><ul class=nav-list><li class=nav-home role=presentation><a href=/ ><i class="fa fa-home" aria-hidden=true></i> Home</a></li><li class=nav-home role=presentation><a href=/about><i class="fa fa-info-circle" aria-hidden=true></i> About Me</a></li><li class=nav-nome role=presentation><a href=/rss.xml><i class="fa fa-rss" aria-hidden=true></i> Subscribe</a> <a href="https://validator.w3.org/feed/check.cgi?url=https%3A//keystrokecountdown.com/rss.xml"><img src=/images/valid-rss-rogers.png alt="[Valid RSS]" title="Validate my RSS feed"></a></li><li class=nav-home role=presentation><a href=/topics><i class="fa fa-tags" aria-hidden=true></i> Topics</a></li><br><li class=nav-home role=presentation><a href=/articles/auv3/index.html>AUv3 Development -- Part 1 of N</a></li><li class=nav-home role=presentation><a href=/articles/knobci/index.html>Swift Snapshot Testing in Github Actions</a></li><li class=nav-home role=presentation><a href=/articles/wma/index.html>Converting WMA Files to MP3</a></li><li class=nav-home role=presentation><a href=/articles/remarkable/index.html>Remarkable Customizations</a></li><li class=nav-home role=presentation><a href=/articles/browsers/index.html>Automatic Browser Selection</a></li><li class=nav-home role=presentation><a href=/articles/genart/index.html>Generative Images with SVG.js</a></li><li class=nav-home role=presentation><a href=/articles/logistic/index.html>Simple Image Classification using Logistic Regression</a></li><li class=nav-home role=presentation><a href=/articles/kerberos/index.html>Using Kerboros on macOS</a></li><li class=nav-home role=presentation><a href=/articles/translate/index.html>Text Language Translation Utility</a></li><li class=nav-home role=presentation><a href=/articles/keymaps/index.html>Remapping Keys on macOS High Sierra</a></li><li class=nav-home role=presentation><a href=/articles/letencrypt/index.html>Fixing Azure Let&#x27;s Encrypt Expired Key</a></li><li class=nav-home role=presentation><a href=/articles/console/index.html>Formatting Console Output</a></li><li class=nav-home role=presentation><a href=/articles/layout/index.html>[DRAFT] Test Page for CSS Settings</a></li><li class=nav-home role=presentation><a href=/articles/docker/index.html>[DRAFT] Playing with .Net Core Apps and Docker on a Mac</a></li><li class=nav-home role=presentation><a href=/articles/autohotkey/index.html>Different (Key)strokes for Different Folks</a></li><li class=nav-home role=presentation><a href=/articles/itunes/index.html>Apple iTunes Library Manipulation with Python</a></li><li class=nav-home role=presentation><a href=/articles/metalsmith2/index.html>Metalsmith Plugins for Server-side KaTeX Processing</a></li><li class=nav-home role=presentation><a href=/articles/poisson/index.html>Arrival Intervals of a Poisson Process</a></li><li class=nav-home role=presentation><a href=/articles/cocoapods/index.html>Framework Bundles in Xcode and CocoaPods</a></li><li class=nav-home role=presentation><a href=/articles/signing/index.html>Signing Embedded Frameworks in an Embedded Framework</a></li><li class=nav-home role=presentation><a href=/articles/vhtc/index.html>Variable Height UITableView Cells in Swift</a></li><li class=nav-home role=presentation><a href=/articles/joystick/index.html>JoyStickView for iOS in Swift</a></li><li class=nav-home role=presentation><a href=/articles/dependencyInjection/index.html>Dependency Injection for iOS in Swift</a></li><li class=nav-home role=presentation><a href=/articles/corePlot/index.html>Working with Core Plot</a></li><li class=nav-home role=presentation><a href=/articles/slidingViews/index.html>Sliding UIViews with Core Animation</a></li><li class=nav-home role=presentation><a href=/articles/swiftCollection/index.html>Adding Binary Search to Swift Collections</a></li><li class=nav-home role=presentation><a href=/articles/metalsmith/index.html>Metalsmith Static Site on Azure</a></li><li class=nav-home role=presentation><a href=/articles/bloom/index.html>Bloom Filters in Python</a></li><li class=nav-home role=presentation><a href="/articles/Testing IPython/testing-ipython.html">Testing IPython</a></li><li class=nav-home role=presentation><a href=/articles/decrypt/index.html>Decrypting Logs in Python</a></li><li class=nav-home role=presentation><a href=/articles/power/index.html>Power of Optimal Algorithm Design</a></li><li class=nav-home role=presentation><a href=/articles/PDMPlayground/index.html>PDM Playground</a></li><li class=nav-home role=presentation><a href=/articles/bscope/index.html>B-Scope Radar Display</a></li><li class=nav-home role=presentation><a href=/articles/ascope/index.html>A-Scope Signal Display</a></li><li class=nav-home role=presentation><a href=/articles/radardisplay/index.html>Radar Display</a></li><li class=nav-home role=presentation><a href=/articles/dfwtraffic/index.html>Visualizing Traffic at DFW Airport</a></li></ul></div><span class=nav-cover></span><div class=site-wrapper><header class="main-header post-head" style="background-image: url(/articles/slidingViews/animation.gif)"><nav class="main-nav overlay clearfix"><a class="menu-button icon-menu" href=#><span class=word>Menu</span></a></nav></header><main class=content role=main><article class=post><header class=post-header><h1 class=post-title><a href=/ >Sliding UIViews with Core Animation</a></h1><section class=post-meta><time class=post-date datetime="Wed Sep 28 2016 12:18:02 GMT+0200 (Central European Summer Time)">Sep 28th, 2016</time> <a class=post-date href=/topics><i class="fa fa-tags" aria-hidden=true></i></a> <a class=post-date href=/topics/swift.html>Swift (10)</a> • <a class=post-date href=/topics/ui.html>UI (5)</a></section></header><section class=post-content><p>For fun, I’ve been rewriting an app I had created on iOS for measuring push notification performance. The original was written in Objective-C (Obj-C), but the rewrite is in Swift. The application uses <a href=https://github.com/core-plot/core-plot>Core Plot</a> for visualizing, and much of my work so far has focused on getting the plots to look and work right. Revisiting my code brought back memories of the difficulties I encountered getting desired behavior out of the complex library (the generated documentation helps somewhat as do the demo apps, but I often need to dive into Core Plot code to get the desired behavior – I will write about this in another post).</p><p>With the graphing done and the main display layout working, I next tackled the transitioning between the lower views shown in the app. Here’s what it looks like:</p><p><img src=animation.gif alt=animation.gif></p><p>The tab buttons at the top right trigger different views at the bottom, keeping the primary scatter plot showing in the top-half of the view at all times. This is all done in <a href=https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/ >Auto Layout</a> which, like Core Plot, can be confusing at times to understand why unexpected behavior strikes. The three views at the bottom lie on-top of another empty one whose sole purpose in life is to keep the upper scatter plot view properly sized on the display; the other views simply follow its layout. This is all pretty straightforward and I accomplished it all in Xcode’s Interface Builder.</p><p>For the sliding transition effect, I rely on the <a href=https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html>Core Animation</a> functionality that all <code>UIView</code> objects have. For some properties, one can set a new value and then have Core Animation generate a list of values from the old to new value over the duration of the animation. For the sliding effect, I am updating the <code>constant</code> property of an <a href=https://developer.apple.com/reference/uikit/nslayoutconstraint>NSLayoutConstraint</a> which is animatable. This property tells Auto Layout engine how far apart it should keep specific edges of two views. For instance, for the leading spacing constraint, setting this to zero (0) will keep the left edge of a view flush with the left edge of the containing view. If we set then set the constraint’s <code>constant</code> property to the width of the view, then the view will essentially be shoved all the way over to the right. Have Core Animation drive this setting change, and we can see the sliding take place.</p><h2>Finding Constraints</h2><p>To handle the animation, I need to locate the right constraints to manipulate. Constraints for a view are held by the parent view. Each <code>NSLayoutConstraint</code> defines a relationship between two views, so we have to check two properties of a constraint to see if it pertains to the view we want to slide. Here is code from my <code>LowerView</code> struct which does this:</p><pre class=language-swift><code class=language-swift><span class="token keyword">weak</span> <span class="token keyword">var</span> view<span class="token punctuation">:</span> <span class="token class-name">UIView</span><span class="token operator">!</span>
+<span class="token keyword">weak</span> <span class="token keyword">var</span> button<span class="token punctuation">:</span> <span class="token class-name">UIBarButtonItem</span><span class="token operator">!</span>
+<span class="token keyword">weak</span> <span class="token keyword">var</span> top<span class="token punctuation">:</span> <span class="token class-name">NSLayoutConstraint</span><span class="token operator">!</span>
+<span class="token keyword">weak</span> <span class="token keyword">var</span> bottom<span class="token punctuation">:</span> <span class="token class-name">NSLayoutConstraint</span><span class="token operator">!</span>
+<span class="token keyword">weak</span> <span class="token keyword">var</span> <span class="token keyword">left</span><span class="token punctuation">:</span> <span class="token class-name">NSLayoutConstraint</span><span class="token operator">!</span>
+<span class="token keyword">weak</span> <span class="token keyword">var</span> <span class="token keyword">right</span><span class="token punctuation">:</span> <span class="token class-name">NSLayoutConstraint</span><span class="token operator">!</span>
+
+<span class="token keyword">init</span><span class="token operator">?</span><span class="token punctuation">(</span>view<span class="token punctuation">:</span> <span class="token class-name">UIView</span><span class="token punctuation">,</span> button<span class="token punctuation">:</span> <span class="token class-name">UIBarButtonItem</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">guard</span> <span class="token keyword">let</span> constraints <span class="token operator">=</span> view<span class="token punctuation">.</span>superview<span class="token operator">?</span><span class="token punctuation">.</span>constraints <span class="token keyword">else</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token nil constant">nil</span> <span class="token punctuation">}</span>
+    <span class="token keyword">self</span><span class="token punctuation">.</span>view <span class="token operator">=</span> view
+    <span class="token keyword">self</span><span class="token punctuation">.</span>button <span class="token operator">=</span> button
+    constraints<span class="token punctuation">.</span>forEach <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token short-argument">$0</span><span class="token punctuation">.</span>firstItem <span class="token operator">===</span> view <span class="token punctuation">{</span>
+            <span class="token keyword">switch</span> <span class="token short-argument">$0</span><span class="token punctuation">.</span>firstAttribute <span class="token punctuation">{</span>
+            <span class="token keyword">case</span> <span class="token punctuation">.</span>top<span class="token punctuation">:</span> <span class="token keyword">self</span><span class="token punctuation">.</span>top <span class="token operator">=</span> <span class="token short-argument">$0</span>
+            <span class="token keyword">case</span> <span class="token punctuation">.</span>bottom<span class="token punctuation">:</span> <span class="token keyword">self</span><span class="token punctuation">.</span>bottom <span class="token operator">=</span> <span class="token short-argument">$0</span>
+            <span class="token keyword">case</span> <span class="token punctuation">.</span>leading<span class="token punctuation">:</span> <span class="token keyword">self</span><span class="token punctuation">.</span><span class="token keyword">left</span> <span class="token operator">=</span> <span class="token short-argument">$0</span>
+            <span class="token keyword">case</span> <span class="token punctuation">.</span>trailing<span class="token punctuation">:</span> <span class="token keyword">self</span><span class="token punctuation">.</span><span class="token keyword">right</span> <span class="token operator">=</span> <span class="token short-argument">$0</span>
+            <span class="token keyword">default</span><span class="token punctuation">:</span> <span class="token keyword">break</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token short-argument">$0</span><span class="token punctuation">.</span>secondItem <span class="token operator">===</span> view <span class="token punctuation">{</span>
+            <span class="token keyword">switch</span> <span class="token short-argument">$0</span><span class="token punctuation">.</span>secondAttribute <span class="token punctuation">{</span>
+            <span class="token keyword">case</span> <span class="token punctuation">.</span>top<span class="token punctuation">:</span> <span class="token keyword">self</span><span class="token punctuation">.</span>top <span class="token operator">=</span> <span class="token short-argument">$0</span>
+            <span class="token keyword">case</span> <span class="token punctuation">.</span>bottom<span class="token punctuation">:</span> <span class="token keyword">self</span><span class="token punctuation">.</span>bottom <span class="token operator">=</span> <span class="token short-argument">$0</span>
+            <span class="token keyword">case</span> <span class="token punctuation">.</span>leading<span class="token punctuation">:</span> <span class="token keyword">self</span><span class="token punctuation">.</span><span class="token keyword">left</span> <span class="token operator">=</span> <span class="token short-argument">$0</span>
+            <span class="token keyword">case</span> <span class="token punctuation">.</span>trailing<span class="token punctuation">:</span> <span class="token keyword">self</span><span class="token punctuation">.</span><span class="token keyword">right</span> <span class="token operator">=</span> <span class="token short-argument">$0</span>
+            <span class="token keyword">default</span><span class="token punctuation">:</span> <span class="token keyword">break</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><blockquote><p>Outstanding question: is this the best way to do this?</p></blockquote><h2>Doing the <a href="https://www.youtube.com/watch?v=-mOY2eWO2qw">Electric Slide</a></h2><p>Once the constraints are found, we can animate the view. Here is a general <code>slide</code> function which handles all of the sliding operations. It takes the following parameters</p><ul><li><code>from</code> – defines the side of the view that will be leading the slide</li><li><code>to</code> – defines the opposite side of the view we are sliding</li></ul><p>If the view is currently hidden, then it will slide into view, otherwise it will slide out of view. The orientation of the slide depends on the constraints we give to <code>from</code> and <code>to</code>, and the direction by their ordering.</p><pre class=language-swift><code class=language-swift><span class="token keyword">private</span> <span class="token keyword">func</span> <span class="token function-definition function">slide</span><span class="token punctuation">(</span>from<span class="token punctuation">:</span> <span class="token class-name">NSLayoutConstraint</span><span class="token punctuation">,</span> to<span class="token punctuation">:</span> <span class="token class-name">NSLayoutConstraint</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> slidingIn <span class="token operator">=</span> view<span class="token punctuation">.</span>isHidden
+    <span class="token keyword">let</span> offset <span class="token operator">=</span> from <span class="token operator">===</span> <span class="token keyword">left</span> <span class="token operator">||</span> from <span class="token operator">===</span> <span class="token keyword">right</span> <span class="token operator">?</span> view<span class="token punctuation">.</span>frame<span class="token punctuation">.</span>size<span class="token punctuation">.</span>width <span class="token punctuation">:</span> view<span class="token punctuation">.</span>frame<span class="token punctuation">.</span>size<span class="token punctuation">.</span>height
+
+    <span class="token comment">// Start state</span>
+    <span class="token comment">//</span>
+    <span class="token keyword">if</span> slidingIn <span class="token punctuation">{</span>
+        to<span class="token punctuation">.</span>constant <span class="token operator">=</span> offset
+        from<span class="token punctuation">.</span>constant <span class="token operator">=</span> <span class="token operator">-</span>offset
+        view<span class="token punctuation">.</span>superview<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">layoutIfNeeded</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// (1)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// End state</span>
+    <span class="token comment">//</span>
+    <span class="token keyword">if</span> slidingIn <span class="token punctuation">{</span>
+        to<span class="token punctuation">.</span>constant <span class="token operator">=</span> <span class="token number">0</span>
+        from<span class="token punctuation">.</span>constant <span class="token operator">=</span> <span class="token number">0</span>
+        view<span class="token punctuation">.</span>isHidden <span class="token operator">=</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        to<span class="token punctuation">.</span>constant <span class="token operator">=</span> <span class="token operator">-</span>offset
+        from<span class="token punctuation">.</span>constant <span class="token operator">=</span> offset
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Animate transition from start to end state</span>
+    <span class="token comment">//</span>
+    <span class="token class-name">UIView</span><span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span>withDuration<span class="token punctuation">:</span> <span class="token number">0.25</span><span class="token punctuation">,</span>
+                   animations<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token keyword">self</span><span class="token punctuation">.</span>view<span class="token punctuation">.</span>superview<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">layoutIfNeeded</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// (2)</span>
+                   completion<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token omit keyword">_</span> <span class="token keyword">in</span>
+                    <span class="token keyword">self</span><span class="token punctuation">.</span>view<span class="token punctuation">.</span>superview<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">layoutIfNeeded</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// (3)</span>
+                    <span class="token keyword">self</span><span class="token punctuation">.</span>view<span class="token punctuation">.</span>isHidden <span class="token operator">=</span> <span class="token operator">!</span>slidingIn
+                    <span class="token keyword">self</span><span class="token punctuation">.</span>button<span class="token punctuation">.</span>tintColor <span class="token operator">=</span> slidingIn <span class="token operator">?</span> <span class="token class-name">LowerView</span><span class="token punctuation">.</span>activeTint <span class="token punctuation">:</span> <span class="token class-name">LowerView</span><span class="token punctuation">.</span>inactiveTint
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre><p>The key to making this work is the proper placement of calls from the view’s parent to <code>layoutIfNeeded()</code>. When sliding in, the view needs to have the initial state we want (we cannot depend on prior state here). The first call at <em>(1)</em> to <code>layoutIfNeeded()</code> makes this happen. Next, we set the end state which for sliding in requires that the constraint constants be zero. We also make the view visible so that we will see the sliding effect.</p><p>The <code>UIView.animate</code> class method does the animation work for us, but we need to again call <code>layoutIfNeeded()</code> <em>(2)</em> after each animation frame so we can see the updated view. Finally at <em>(3)</em> we have the view in its final position, so we once again call <code>layoutIfNeeded()</code> to make it permanent. It is also at this point that we hide the view if it was sliding out.</p><p>The above <code>slide</code> method is private to the <code>LowerView</code> struct. Here are the public functions which simply invoke it using the right constraints in the right order:</p><pre class=language-swift><code class=language-swift><span class="token keyword">func</span> <span class="token function-definition function">slideLeft</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">slide</span><span class="token punctuation">(</span>from<span class="token punctuation">:</span> <span class="token keyword">right</span><span class="token punctuation">,</span> to<span class="token punctuation">:</span> <span class="token keyword">left</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function-definition function">slideRight</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">slide</span><span class="token punctuation">(</span>from<span class="token punctuation">:</span> <span class="token keyword">left</span><span class="token punctuation">,</span> to<span class="token punctuation">:</span> <span class="token keyword">right</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function-definition function">slideDown</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">slide</span><span class="token punctuation">(</span>from<span class="token punctuation">:</span> top<span class="token punctuation">,</span> to<span class="token punctuation">:</span> bottom<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function-definition function">slideUp</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">slide</span><span class="token punctuation">(</span>from<span class="token punctuation">:</span> bottom<span class="token punctuation">,</span> to<span class="token punctuation">:</span> top<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Now that we have the methods for sliding, we need to add the necessary functionality to coordinate the sliding of two views at a time – sliding one view out while sliding another one it to replace the first.</p><h2>Managing LowerView Appearances</h2><p>I have a <code>LowerViewManager</code> which coordinates the appearance of a view in the lower part of the main display. It knows which view is currently active, and properly transitions between them using the right direction. For instance, there are three views in my app – histogram, log, events – with three buttons at the upper-right of the app. Switching from histogram to log should look like the log view comes in from the right since the log button is to the right of the histogram one. Likewise, going from the events view to log or histogram view should have the events view slide out to the right, with the other view coming in from the left.</p><p>Here is the <code>transition</code> method of the <code>LowerViewManager</code> struct. Interestingly, the second parameter is a <code>LowerView</code> method which returns another method. Swift allows one to pass around functions, but here we are passing around an instance method. Before we can invoke it, we need to <em>bind</em> the instance value to the method, which we do in the <code>method()</code> invocation. What we get back is a method bound to the <code>LowerView</code> object we wish to slide. To do <em>that</em> part, we do a second method call.</p><pre class=language-swift><code class=language-swift><span class="token keyword">private</span> <span class="token keyword">mutating</span> <span class="token keyword">func</span> <span class="token function-definition function">transition</span><span class="token punctuation">(</span>activate<span class="token punctuation">:</span> <span class="token class-name">Kind</span><span class="token punctuation">,</span> method<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token omit keyword">_</span> <span class="token punctuation">:</span> <span class="token class-name">LowerView</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> activate <span class="token operator">==</span> active <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token punctuation">}</span>
+    <span class="token function">method</span><span class="token punctuation">(</span>lowerViews<span class="token punctuation">[</span>active<span class="token punctuation">]</span><span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    active <span class="token operator">=</span> activate
+    <span class="token function">method</span><span class="token punctuation">(</span>lowerViews<span class="token punctuation">[</span>active<span class="token punctuation">]</span><span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Again, the above is private to <code>LowerViewManager</code>. Here are the two public methods which perform transitions in a horizontal or vertical manner. They pass in the right <code>LowerView</code> slide method depending on the ordering of the current view and the view being activated.</p><pre class=language-swift><code class=language-swift><span class="token keyword">mutating</span> <span class="token keyword">func</span> <span class="token function-definition function">slideVertically</span><span class="token punctuation">(</span>activate<span class="token punctuation">:</span> <span class="token class-name">Kind</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> method <span class="token operator">=</span> activate<span class="token punctuation">.</span>rawValue <span class="token operator">&lt;</span> active<span class="token punctuation">.</span>rawValue <span class="token operator">?</span> <span class="token class-name">LowerView</span><span class="token punctuation">.</span>slideUp <span class="token punctuation">:</span> <span class="token class-name">LowerView</span><span class="token punctuation">.</span>slideDown
+    <span class="token function">transition</span><span class="token punctuation">(</span>activate<span class="token punctuation">:</span> activate<span class="token punctuation">,</span> method<span class="token punctuation">:</span> method<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">mutating</span> <span class="token keyword">func</span> <span class="token function-definition function">slideHorizontally</span><span class="token punctuation">(</span>activate<span class="token punctuation">:</span> <span class="token class-name">Kind</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> method <span class="token operator">=</span> active<span class="token punctuation">.</span>rawValue <span class="token operator">&lt;</span> activate<span class="token punctuation">.</span>rawValue <span class="token operator">?</span> <span class="token class-name">LowerView</span><span class="token punctuation">.</span>slideLeft <span class="token punctuation">:</span> <span class="token class-name">LowerView</span><span class="token punctuation">.</span>slideRight
+    <span class="token function">transition</span><span class="token punctuation">(</span>activate<span class="token punctuation">:</span> activate<span class="token punctuation">,</span> method<span class="token punctuation">:</span> method<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Pretty simple.</p><h2>Source</h2><p>Here is the complete source for <code>LowerView</code>:</p><pre class=language-swift><code class=language-swift><span class="token comment">/**
+ A pairing of view and bar button which is managed by a LowerViewManager instance.
+ 
+ Instances know how to slide themselves around horizontally and vertically in either direction.
+ */</span>
+<span class="token keyword">struct</span> <span class="token class-name">LowerView</span> <span class="token punctuation">{</span>
+    
+    <span class="token keyword">static</span> <span class="token keyword">let</span> inactiveTint <span class="token operator">=</span> <span class="token class-name">UIColor</span><span class="token punctuation">(</span>red<span class="token punctuation">:</span> <span class="token number">10.0</span><span class="token operator">/</span><span class="token number">255.0</span><span class="token punctuation">,</span> green<span class="token punctuation">:</span> <span class="token number">96.0</span><span class="token operator">/</span><span class="token number">255.0</span><span class="token punctuation">,</span> blue<span class="token punctuation">:</span> <span class="token number">254.0</span><span class="token operator">/</span><span class="token number">255.0</span><span class="token punctuation">,</span> alpha<span class="token punctuation">:</span> <span class="token number">1.0</span><span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token keyword">let</span> activeTint <span class="token operator">=</span> <span class="token class-name">UIColor</span><span class="token punctuation">(</span>red<span class="token punctuation">:</span> <span class="token number">0.0</span><span class="token operator">/</span><span class="token number">255.0</span><span class="token punctuation">,</span> green<span class="token punctuation">:</span> <span class="token number">255.0</span><span class="token operator">/</span><span class="token number">255.0</span><span class="token punctuation">,</span> blue<span class="token punctuation">:</span> <span class="token number">255.0</span><span class="token operator">/</span><span class="token number">255.0</span><span class="token punctuation">,</span> alpha<span class="token punctuation">:</span><span class="token number">1.0</span><span class="token punctuation">)</span>
+ 
+    <span class="token keyword">weak</span> <span class="token keyword">var</span> view<span class="token punctuation">:</span> <span class="token class-name">UIView</span><span class="token operator">!</span>
+    <span class="token keyword">weak</span> <span class="token keyword">var</span> button<span class="token punctuation">:</span> <span class="token class-name">UIBarButtonItem</span><span class="token operator">!</span>
+    <span class="token keyword">weak</span> <span class="token keyword">var</span> top<span class="token punctuation">:</span> <span class="token class-name">NSLayoutConstraint</span><span class="token operator">!</span>
+    <span class="token keyword">weak</span> <span class="token keyword">var</span> bottom<span class="token punctuation">:</span> <span class="token class-name">NSLayoutConstraint</span><span class="token operator">!</span>
+    <span class="token keyword">weak</span> <span class="token keyword">var</span> <span class="token keyword">left</span><span class="token punctuation">:</span> <span class="token class-name">NSLayoutConstraint</span><span class="token operator">!</span>
+    <span class="token keyword">weak</span> <span class="token keyword">var</span> <span class="token keyword">right</span><span class="token punctuation">:</span> <span class="token class-name">NSLayoutConstraint</span><span class="token operator">!</span>
+
+    <span class="token comment">/**
+     Initialize new instance. Scans the constraints held by the parent view and records the ones that are
+     useful for sliding purposes, namely:
+     
+     * top -- the constraint managing the top edge of the view
+     * bottom -- the constraint managing the bottom edge of the view
+     * leading -- the constraint managing the left edge of the view
+     * trailing -- the constraint managing the right edge of the view
+     
+     - parameter view: the UIView object to manage
+     - parameter button: the UIBarButtonItem that, when pressed, makes the linked UIView visible
+     */</span>
+    <span class="token keyword">init</span><span class="token operator">?</span><span class="token punctuation">(</span>view<span class="token punctuation">:</span> <span class="token class-name">UIView</span><span class="token punctuation">,</span> button<span class="token punctuation">:</span> <span class="token class-name">UIBarButtonItem</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">guard</span> <span class="token keyword">let</span> constraints <span class="token operator">=</span> view<span class="token punctuation">.</span>superview<span class="token operator">?</span><span class="token punctuation">.</span>constraints <span class="token keyword">else</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token nil constant">nil</span> <span class="token punctuation">}</span>
+        <span class="token keyword">self</span><span class="token punctuation">.</span>view <span class="token operator">=</span> view
+        <span class="token keyword">self</span><span class="token punctuation">.</span>button <span class="token operator">=</span> button
+        
+        <span class="token comment">// Is there an easier, less verbose way of doing this?</span>
+        <span class="token comment">//</span>
+        constraints<span class="token punctuation">.</span>forEach <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token short-argument">$0</span><span class="token punctuation">.</span>firstItem <span class="token operator">===</span> view <span class="token punctuation">{</span>
+                <span class="token keyword">switch</span> <span class="token short-argument">$0</span><span class="token punctuation">.</span>firstAttribute <span class="token punctuation">{</span>
+                <span class="token keyword">case</span> <span class="token punctuation">.</span>top<span class="token punctuation">:</span> <span class="token keyword">self</span><span class="token punctuation">.</span>top <span class="token operator">=</span> <span class="token short-argument">$0</span>
+                <span class="token keyword">case</span> <span class="token punctuation">.</span>bottom<span class="token punctuation">:</span> <span class="token keyword">self</span><span class="token punctuation">.</span>bottom <span class="token operator">=</span> <span class="token short-argument">$0</span>
+                <span class="token keyword">case</span> <span class="token punctuation">.</span>leading<span class="token punctuation">:</span> <span class="token keyword">self</span><span class="token punctuation">.</span><span class="token keyword">left</span> <span class="token operator">=</span> <span class="token short-argument">$0</span>
+                <span class="token keyword">case</span> <span class="token punctuation">.</span>trailing<span class="token punctuation">:</span> <span class="token keyword">self</span><span class="token punctuation">.</span><span class="token keyword">right</span> <span class="token operator">=</span> <span class="token short-argument">$0</span>
+                <span class="token keyword">default</span><span class="token punctuation">:</span> <span class="token keyword">break</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token short-argument">$0</span><span class="token punctuation">.</span>secondItem <span class="token operator">===</span> view <span class="token punctuation">{</span>
+                <span class="token keyword">switch</span> <span class="token short-argument">$0</span><span class="token punctuation">.</span>secondAttribute <span class="token punctuation">{</span>
+                <span class="token keyword">case</span> <span class="token punctuation">.</span>top<span class="token punctuation">:</span> <span class="token keyword">self</span><span class="token punctuation">.</span>top <span class="token operator">=</span> <span class="token short-argument">$0</span>
+                <span class="token keyword">case</span> <span class="token punctuation">.</span>bottom<span class="token punctuation">:</span> <span class="token keyword">self</span><span class="token punctuation">.</span>bottom <span class="token operator">=</span> <span class="token short-argument">$0</span>
+                <span class="token keyword">case</span> <span class="token punctuation">.</span>leading<span class="token punctuation">:</span> <span class="token keyword">self</span><span class="token punctuation">.</span><span class="token keyword">left</span> <span class="token operator">=</span> <span class="token short-argument">$0</span>
+                <span class="token keyword">case</span> <span class="token punctuation">.</span>trailing<span class="token punctuation">:</span> <span class="token keyword">self</span><span class="token punctuation">.</span><span class="token keyword">right</span> <span class="token operator">=</span> <span class="token short-argument">$0</span>
+                <span class="token keyword">default</span><span class="token punctuation">:</span> <span class="token keyword">break</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     Slide the view in the direction managed by the given constraints. Uses CoreAnimation to show the 
+     view sliding in/out
+     
+     - parameter state: indicates if the view is sliding into view (true) or sliding out of view (false)
+     - parameter a: the constraint for left or top
+     - parameter b: the constraint for right or bottom
+     - parameter constant: the value that will be used to animate over
+     */</span>
+    <span class="token keyword">private</span> <span class="token keyword">func</span> <span class="token function-definition function">slide</span><span class="token punctuation">(</span>from<span class="token punctuation">:</span> <span class="token class-name">NSLayoutConstraint</span><span class="token punctuation">,</span> to<span class="token punctuation">:</span> <span class="token class-name">NSLayoutConstraint</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> slidingIn <span class="token operator">=</span> view<span class="token punctuation">.</span>isHidden
+        <span class="token keyword">let</span> offset <span class="token operator">=</span> from <span class="token operator">===</span> <span class="token keyword">left</span> <span class="token operator">||</span> from <span class="token operator">===</span> <span class="token keyword">right</span> <span class="token operator">?</span> view<span class="token punctuation">.</span>frame<span class="token punctuation">.</span>size<span class="token punctuation">.</span>width <span class="token punctuation">:</span> view<span class="token punctuation">.</span>frame<span class="token punctuation">.</span>size<span class="token punctuation">.</span>height
+
+        <span class="token comment">// Start state</span>
+        <span class="token comment">//</span>
+        <span class="token keyword">if</span> slidingIn <span class="token punctuation">{</span>
+            to<span class="token punctuation">.</span>constant <span class="token operator">=</span> offset
+            from<span class="token punctuation">.</span>constant <span class="token operator">=</span> <span class="token operator">-</span>offset
+            view<span class="token punctuation">.</span>superview<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">layoutIfNeeded</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// End state</span>
+        <span class="token comment">//</span>
+        <span class="token keyword">if</span> slidingIn <span class="token punctuation">{</span>
+            to<span class="token punctuation">.</span>constant <span class="token operator">=</span> <span class="token number">0</span>
+            from<span class="token punctuation">.</span>constant <span class="token operator">=</span> <span class="token number">0</span>
+            view<span class="token punctuation">.</span>isHidden <span class="token operator">=</span> <span class="token boolean">false</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            to<span class="token punctuation">.</span>constant <span class="token operator">=</span> <span class="token operator">-</span>offset
+            from<span class="token punctuation">.</span>constant <span class="token operator">=</span> offset
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// Animate transition from start to end state</span>
+        <span class="token comment">//</span>
+        <span class="token class-name">UIView</span><span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span>withDuration<span class="token punctuation">:</span> <span class="token number">0.25</span><span class="token punctuation">,</span>
+                       animations<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token keyword">self</span><span class="token punctuation">.</span>view<span class="token punctuation">.</span>superview<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">layoutIfNeeded</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                       completion<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token omit keyword">_</span> <span class="token keyword">in</span>
+                        <span class="token keyword">self</span><span class="token punctuation">.</span>view<span class="token punctuation">.</span>superview<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">layoutIfNeeded</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                        <span class="token keyword">self</span><span class="token punctuation">.</span>view<span class="token punctuation">.</span>isHidden <span class="token operator">=</span> <span class="token operator">!</span>slidingIn
+                        <span class="token keyword">self</span><span class="token punctuation">.</span>button<span class="token punctuation">.</span>tintColor <span class="token operator">=</span> slidingIn <span class="token operator">?</span> <span class="token class-name">LowerView</span><span class="token punctuation">.</span>activeTint <span class="token punctuation">:</span> <span class="token class-name">LowerView</span><span class="token punctuation">.</span>inactiveTint
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     Slide the view to the left.
+     */</span>
+    <span class="token keyword">func</span> <span class="token function-definition function">slideLeft</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">slide</span><span class="token punctuation">(</span>from<span class="token punctuation">:</span> <span class="token keyword">right</span><span class="token punctuation">,</span> to<span class="token punctuation">:</span> <span class="token keyword">left</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     Slide the view to the right.
+     */</span>
+    <span class="token keyword">func</span> <span class="token function-definition function">slideRight</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">slide</span><span class="token punctuation">(</span>from<span class="token punctuation">:</span> <span class="token keyword">left</span><span class="token punctuation">,</span> to<span class="token punctuation">:</span> <span class="token keyword">right</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token comment">/**
+     Slide the view down.
+     */</span>
+    <span class="token keyword">func</span> <span class="token function-definition function">slideDown</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">slide</span><span class="token punctuation">(</span>from<span class="token punctuation">:</span> top<span class="token punctuation">,</span> to<span class="token punctuation">:</span> bottom<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token comment">/**
+     Slide the view to up.
+     */</span>
+    <span class="token keyword">func</span> <span class="token function-definition function">slideUp</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">slide</span><span class="token punctuation">(</span>from<span class="token punctuation">:</span> bottom<span class="token punctuation">,</span> to<span class="token punctuation">:</span> top<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>And here is <code>LowerViewManager</code>:</p><pre class=language-swift><code class=language-swift><span class="token comment">/**
+ Inner struct that manages the lower view in the main view.
+ 
+ Views have associated buttons that, when pressed, cause the associated view to be shown. 
+ There are currently two ways to reveal a view:
+
+ * slideUpDown - vertically slide old/new views
+ * slideLeftRight - horizontally slide old/new views
+
+ If the pressed button has a tag value smaller than the previously shown view, then the direction of the sliding is
+ down/up or right/left. If the the tag value is greater than the previously shown view, then the direction is
+ opposite -- up/down or left/right
+ 
+ */</span>
+<span class="token keyword">struct</span> <span class="token class-name">LowerViewManager</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">enum</span> <span class="token class-name">Kind</span> <span class="token punctuation">:</span> <span class="token class-name">Int</span> <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> histogram<span class="token punctuation">,</span> log<span class="token punctuation">,</span> events
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     Error indicator for when a managed view is missing a required layout constraint
+     */</span>
+    <span class="token keyword">enum</span> <span class="token class-name">Failure</span> <span class="token punctuation">:</span> <span class="token class-name">Error</span> <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> <span class="token class-name">MissingConstraint</span>
+        <span class="token keyword">case</span> <span class="token class-name">InvalidTag</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">var</span> lowerViews <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token class-name">Kind</span><span class="token punctuation">:</span><span class="token class-name">LowerView</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token keyword">var</span> active<span class="token punctuation">:</span> <span class="token class-name">Kind</span> <span class="token operator">=</span> <span class="token punctuation">.</span>histogram
+
+    <span class="token comment">/**
+     Add a view/button pair to the managed collection.
+
+     Creates a new LowerView instance and if successful inserts it into the array of managed views
+     
+     - parameter view: the view to add
+     - parameter button: the button to associate with the view
+     */</span>
+    <span class="token keyword">mutating</span> <span class="token keyword">func</span> <span class="token function-definition function">add</span><span class="token punctuation">(</span>view<span class="token punctuation">:</span> <span class="token class-name">UIView</span><span class="token punctuation">,</span> button<span class="token punctuation">:</span> <span class="token class-name">UIBarButtonItem</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token punctuation">{</span>
+        <span class="token keyword">guard</span> <span class="token keyword">let</span> value <span class="token operator">=</span> <span class="token class-name">LowerView</span><span class="token punctuation">(</span>view<span class="token punctuation">:</span> view<span class="token punctuation">,</span> button<span class="token punctuation">:</span> button<span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token punctuation">{</span> <span class="token keyword">throw</span> <span class="token class-name">Failure</span><span class="token punctuation">.</span><span class="token class-name">MissingConstraint</span> <span class="token punctuation">}</span>
+        <span class="token keyword">guard</span> <span class="token keyword">let</span> key <span class="token operator">=</span> <span class="token class-name">Kind</span><span class="token punctuation">(</span>rawValue<span class="token punctuation">:</span> view<span class="token punctuation">.</span>tag<span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token punctuation">{</span> <span class="token keyword">throw</span> <span class="token class-name">Failure</span><span class="token punctuation">.</span><span class="token class-name">InvalidTag</span> <span class="token punctuation">}</span>
+        lowerViews<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> value
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     Slide two views, the old one slides out while the new one slides it.
+     
+     - parameter index: the unique tag value for the view to slide in and make current
+     - parameter method: the sliding method to invoke to do the sliding
+     */</span>
+    <span class="token keyword">private</span> <span class="token keyword">mutating</span> <span class="token keyword">func</span> <span class="token function-definition function">transition</span><span class="token punctuation">(</span>activate<span class="token punctuation">:</span> <span class="token class-name">Kind</span><span class="token punctuation">,</span> method<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token omit keyword">_</span> <span class="token punctuation">:</span> <span class="token class-name">LowerView</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> activate <span class="token operator">==</span> active <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token punctuation">}</span>
+        <span class="token function">method</span><span class="token punctuation">(</span>lowerViews<span class="token punctuation">[</span>active<span class="token punctuation">]</span><span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        active <span class="token operator">=</span> activate
+        <span class="token function">method</span><span class="token punctuation">(</span>lowerViews<span class="token punctuation">[</span>active<span class="token punctuation">]</span><span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     Slide views vertically
+     
+     - parameter index: the view to make current
+     */</span>
+    <span class="token keyword">mutating</span> <span class="token keyword">func</span> <span class="token function-definition function">slideVertically</span><span class="token punctuation">(</span>activate<span class="token punctuation">:</span> <span class="token class-name">Kind</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> method <span class="token operator">=</span> activate<span class="token punctuation">.</span>rawValue <span class="token operator">&lt;</span> active<span class="token punctuation">.</span>rawValue <span class="token operator">?</span> <span class="token class-name">LowerView</span><span class="token punctuation">.</span>slideUp <span class="token punctuation">:</span> <span class="token class-name">LowerView</span><span class="token punctuation">.</span>slideDown
+        <span class="token function">transition</span><span class="token punctuation">(</span>activate<span class="token punctuation">:</span> activate<span class="token punctuation">,</span> method<span class="token punctuation">:</span> method<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     Slide views horizontally
+
+     - parameter index: the view to make current
+     */</span>
+    <span class="token keyword">mutating</span> <span class="token keyword">func</span> <span class="token function-definition function">slideHorizontally</span><span class="token punctuation">(</span>activate<span class="token punctuation">:</span> <span class="token class-name">Kind</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> method <span class="token operator">=</span> active<span class="token punctuation">.</span>rawValue <span class="token operator">&lt;</span> activate<span class="token punctuation">.</span>rawValue <span class="token operator">?</span> <span class="token class-name">LowerView</span><span class="token punctuation">.</span>slideLeft <span class="token punctuation">:</span> <span class="token class-name">LowerView</span><span class="token punctuation">.</span>slideRight
+        <span class="token function">transition</span><span class="token punctuation">(</span>activate<span class="token punctuation">:</span> activate<span class="token punctuation">,</span> method<span class="token punctuation">:</span> method<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></section><footer class=post-footer><figure class=author-image><a class=img href=https://keystrokecountdown.com style=background-image:url(/images/HarrisonsLaugh.png)><span class=hidden>Brad Howes's Picture</span></a></figure><section class=author><h4><a href=https://keystrokecountdown.com>Brad Howes</a></h4><p>Owner <a href=https://apps.apple.com/us/developer/b-ray-software/id430573224>B-Ray Software</a>. Programmer in C++, Swift, Python, Javascript and more. Started out doing punch cards in FORTRAN.</p><div class=author-meta><span class="author-location icon-location">Paris, France</span> <span class="author-link icon-link"><a href=http://linkedin.com/in/bradhowes>http://linkedin.com/in/bradhowes</a></span> <span class="author-link icon-feed"><a href=mailto:bradhowes@mac.com>&nbsp;Email Me</a></span></div></section><section class=share><h4>Share this page</h4><div class=social-icons><a class=icon-twitter href="https://twitter.com/intent/tweet?text=Sliding%20UIViews%20with%20Core%20Animation&amp;url=https%3A%2Fkeystrokecountdown.com%2Farticles%2FslidingViews%2Findex.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><span class=hidden>Twitter</span> </a><a class=icon-feed href="mailto:bradhowes@mac.com?subject=Curiosity&body=https%3A%2Fkeystrokecountdown.com%2Farticles%2FslidingViews%2Findex.html"><span class=hidden>Email</span></a></div></section></footer></article></main><aside class=read-next><a class=read-next-story style="background-image: url(/articles/swiftCollection/header.png)" href=/articles/swiftCollection/index.html><section class=post><h2>Adding Binary Search to Swift Collections</h2><div class=post-meta>My first foray into extending Swift&#x27;s Collection protocol in order to provide fast searching of ordered elements.</div></section></a><a class="read-next-story prev" style="background-image: url(/articles/corePlot/animation.gif)" href=/articles/corePlot/index.html><section class=post><h2>Working with Core Plot</h2><div class=post-meta>Shows how to add and control Core Plot graphs</div></section></a></aside><footer class="site-footer clearfix"><section class=copyright><a href=https://keystrokecountdown.com>Keystroke Countdown</a> &copy; <span id=copyrightYear>2016</span> Brad Howes — <a href=https://github.com/bradhowes/keystrokecountdown>Source</a></section></footer></div><script>(function () {
+      var installClickHandlers = function () {
+        var navElement = document.getElementById("nav");
+    
+        // The click handler just toggles classes to do the showing/hiding
+        //
+        var clickHandler = function(e) {
+          document.body.classList.toggle("nav-opened");
+          document.body.classList.toggle("nav-closed");
+          if (navElement) {
+            navElement.classList.toggle("nav-opened");
+            navElement.classList.toggle("nav-closed");
+          }
+        };
+    
+        // Find elements we wish to tap for click events
+        //
+        var elements = Array.prototype.slice.call(
+          document.querySelectorAll(".menu-button, .nav-cover, .nav-close"));
+        if (elements && elements.length > 0) {
+          elements.forEach(function (element) {
+            element.addEventListener('click', clickHandler);
+          });
+        }
+      };
+    
+      // When the document is finished loading, install event handlers to show/hide sidebar menu
+      //
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        installClickHandlers();
+    
+        // Set the copyright year at the bottom of our pages
+        //
+        window.document.getElementById("copyrightYear").innerHTML = (new Date()).getFullYear();
+      });
+    })();</script></body></html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang=en-US><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="IE=edge"><title>Decrypting Logs in Python | Keystroke Countdown</title><meta name=author content="[object Object]"><meta name=robots content="index, follow"><meta name=HandheldFriendly content=True><meta name=description content="A tutorial on how to properly use cryptography libraries available in Python."><link rel=author href=/humans.txt><link rel=icon type=image/png href=/images/favicon.png><link rel=stylesheet href=/css/all-219136742a6fdee2bdc61d07f9ed89cc.css></head><body class="post-template nav-closed"><div class="nav nav-closed" id=nav><h3 class=nav-title>Menu</h3><a href=# class=nav-close><span class=hidden>Close</span></a><ul class=nav-list><li class=nav-home role=presentation><a href=/ ><i class="fa fa-home" aria-hidden=true></i> Home</a></li><li class=nav-home role=presentation><a href=/about><i class="fa fa-info-circle" aria-hidden=true></i> About Me</a></li><li class=nav-nome role=presentation><a href=/rss.xml><i class="fa fa-rss" aria-hidden=true></i> Subscribe</a> <a href="https://validator.w3.org/feed/check.cgi?url=https%3A//keystrokecountdown.com/rss.xml"><img src=/images/valid-rss-rogers.png alt="[Valid RSS]" title="Validate my RSS feed"></a></li><li class=nav-home role=presentation><a href=/topics><i class="fa fa-tags" aria-hidden=true></i> Topics</a></li><br><li class=nav-home role=presentation><a href=/articles/auv3/index.html>AUv3 Development -- Part 1 of N</a></li><li class=nav-home role=presentation><a href=/articles/knobci/index.html>Swift Snapshot Testing in Github Actions</a></li><li class=nav-home role=presentation><a href=/articles/wma/index.html>Converting WMA Files to MP3</a></li><li class=nav-home role=presentation><a href=/articles/remarkable/index.html>Remarkable Customizations</a></li><li class=nav-home role=presentation><a href=/articles/browsers/index.html>Automatic Browser Selection</a></li><li class=nav-home role=presentation><a href=/articles/genart/index.html>Generative Images with SVG.js</a></li><li class=nav-home role=presentation><a href=/articles/logistic/index.html>Simple Image Classification using Logistic Regression</a></li><li class=nav-home role=presentation><a href=/articles/kerberos/index.html>Using Kerboros on macOS</a></li><li class=nav-home role=presentation><a href=/articles/translate/index.html>Text Language Translation Utility</a></li><li class=nav-home role=presentation><a href=/articles/keymaps/index.html>Remapping Keys on macOS High Sierra</a></li><li class=nav-home role=presentation><a href=/articles/letencrypt/index.html>Fixing Azure Let&#x27;s Encrypt Expired Key</a></li><li class=nav-home role=presentation><a href=/articles/console/index.html>Formatting Console Output</a></li><li class=nav-home role=presentation><a href=/articles/layout/index.html>[DRAFT] Test Page for CSS Settings</a></li><li class=nav-home role=presentation><a href=/articles/docker/index.html>[DRAFT] Playing with .Net Core Apps and Docker on a Mac</a></li><li class=nav-home role=presentation><a href=/articles/autohotkey/index.html>Different (Key)strokes for Different Folks</a></li><li class=nav-home role=presentation><a href=/articles/itunes/index.html>Apple iTunes Library Manipulation with Python</a></li><li class=nav-home role=presentation><a href=/articles/metalsmith2/index.html>Metalsmith Plugins for Server-side KaTeX Processing</a></li><li class=nav-home role=presentation><a href=/articles/poisson/index.html>Arrival Intervals of a Poisson Process</a></li><li class=nav-home role=presentation><a href=/articles/cocoapods/index.html>Framework Bundles in Xcode and CocoaPods</a></li><li class=nav-home role=presentation><a href=/articles/signing/index.html>Signing Embedded Frameworks in an Embedded Framework</a></li><li class=nav-home role=presentation><a href=/articles/vhtc/index.html>Variable Height UITableView Cells in Swift</a></li><li class=nav-home role=presentation><a href=/articles/joystick/index.html>JoyStickView for iOS in Swift</a></li><li class=nav-home role=presentation><a href=/articles/dependencyInjection/index.html>Dependency Injection for iOS in Swift</a></li><li class=nav-home role=presentation><a href=/articles/corePlot/index.html>Working with Core Plot</a></li><li class=nav-home role=presentation><a href=/articles/slidingViews/index.html>Sliding UIViews with Core Animation</a></li><li class=nav-home role=presentation><a href=/articles/swiftCollection/index.html>Adding Binary Search to Swift Collections</a></li><li class=nav-home role=presentation><a href=/articles/metalsmith/index.html>Metalsmith Static Site on Azure</a></li><li class=nav-home role=presentation><a href=/articles/bloom/index.html>Bloom Filters in Python</a></li><li class=nav-home role=presentation><a href="/articles/Testing IPython/testing-ipython.html">Testing IPython</a></li><li class=nav-home role=presentation><a href=/articles/decrypt/index.html>Decrypting Logs in Python</a></li><li class=nav-home role=presentation><a href=/articles/power/index.html>Power of Optimal Algorithm Design</a></li><li class=nav-home role=presentation><a href=/articles/PDMPlayground/index.html>PDM Playground</a></li><li class=nav-home role=presentation><a href=/articles/bscope/index.html>B-Scope Radar Display</a></li><li class=nav-home role=presentation><a href=/articles/ascope/index.html>A-Scope Signal Display</a></li><li class=nav-home role=presentation><a href=/articles/radardisplay/index.html>Radar Display</a></li><li class=nav-home role=presentation><a href=/articles/dfwtraffic/index.html>Visualizing Traffic at DFW Airport</a></li></ul></div><span class=nav-cover></span><div class=site-wrapper><header class="main-header post-head" style="background-image: url(/articles/decrypt/system_log.png)"><nav class="main-nav overlay clearfix"><a class="menu-button icon-menu" href=#><span class=word>Menu</span></a></nav></header><main class=content role=main><article class=post><header class=post-header><h1 class=post-title><a href=/ >Decrypting Logs in Python</a></h1><section class=post-meta><time class=post-date datetime="Mon May 02 2016 12:18:02 GMT+0200 (Central European Summer Time)">May 2nd, 2016</time> <a class=post-date href=/topics><i class="fa fa-tags" aria-hidden=true></i></a> <a class=post-date href=/topics/crypto.html>Crypto (2)</a> • <a class=post-date href=/topics/python.html>Python (7)</a></section></header><section class=post-content><p>On a project I was part of, we temporarily stored text logs from our C# service in Azure blobs. We compressed and encrypted the logs prior to sending them to Azure. The encryption step uses AES, with the password encrypted by the private key of a cert (the private key being password protected) and then stored in a header of the log blob. By including the encrypted password with the file, we can be sure we can decrypt the blob even if the AES password changes in the future. All of this is pretty standard fare for encrypting data.</p><p>The team also developed a tool in C# that would download the log blogs for a time period, decrypt and uncompress them, and optionally search for a given text. This was our primary way to diagnose a problem reported by another team. Using the tool was cumbersome to say the least, and it required a Windows machine. Furthermore, the team became the bottleneck for assistance request from other teams, and providing said assistance was becoming a drain on development time.</p><p>I thought perhaps I could cobble together a web site that would do the steps of the C# tool, but on a server and in Python (2.7). A big hurdle to overcome was the decryption step. Python out of the box does not provide encryption or certificate functionality, but there are two packages that fill in the gaps:</p><ul><li><a href=https://pypi.python.org/pypi/pyOpenSSL>PyOpenSSL</a> — a wrapper around the <a href=https://www.openssl.org>OpenSSL</a> library which allows us to read certificates in PKCS12 format.</li><li><a href=https://www.dlitz.net/software/pycrypto/ >PyCrypto</a> — a powerful collection of cryptographic routines including RSA ciphers.</li></ul><p>Below is a simple class I created to obtain an RSA cipher based on a private certificate in PKCS12 format:</p><pre class=language-python><code class=language-python><span class="token keyword">from</span> OpenSSL <span class="token keyword">import</span> crypto
+<span class="token keyword">from</span> Crypto<span class="token punctuation">.</span>Cipher <span class="token keyword">import</span> PKCS1_v1_5
+<span class="token keyword">from</span> Crypto<span class="token punctuation">.</span>Cipher <span class="token keyword">import</span> PKCS1_OAEP
+<span class="token keyword">from</span> Crypto<span class="token punctuation">.</span>PublicKey <span class="token keyword">import</span> RSA
+
+<span class="token keyword">class</span> <span class="token class-name">CipherGenerator</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''Simple class that does the right thing to with a certificate containing a private key.
+    '''</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> cert<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">'''Initialize new instance.
+        
+        cert -- certificate data to use (binary string)
+        password -- the password to apply to the cert to read the private key
+        '''</span>
+        self<span class="token punctuation">.</span>key <span class="token operator">=</span> crypto<span class="token punctuation">.</span>load_pkcs12<span class="token punctuation">(</span>cert<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">.</span>get_privatekey<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>rsa <span class="token operator">=</span> RSA<span class="token punctuation">.</span>importKey<span class="token punctuation">(</span>crypto<span class="token punctuation">.</span>dump_privatekey<span class="token punctuation">(</span>crypto<span class="token punctuation">.</span>FILETYPE_PEM<span class="token punctuation">,</span> self<span class="token punctuation">.</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">getPublicKey</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>rsa<span class="token punctuation">.</span>publickey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>exportKey<span class="token punctuation">(</span><span class="token string">'PEM'</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">getCipherPKCS_15</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">'''Obtain a new RSA cipher using the private key.
+        '''</span>
+        <span class="token keyword">return</span> PKCS1_v1_5<span class="token punctuation">.</span>new<span class="token punctuation">(</span>self<span class="token punctuation">.</span>rsa<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">getCipherPKCS_OAEP</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">'''Obtain a new RSA cipher using the private key.
+        '''</span>
+        <span class="token keyword">return</span> PKCS1_OAEP<span class="token punctuation">.</span>new<span class="token punctuation">(</span>self<span class="token punctuation">.</span>rsa<span class="token punctuation">)</span>
+
+    getCipher <span class="token operator">=</span> getCipherPKCS_OAEP
+</code></pre><p>The two <code>getCipherPKCS*</code> routines reflect the different public-key cryptography standards (PKCS) that were being used</p><ul><li>The 1.5 version which was <a href=https://cryptosense.com/why-pkcs1v1-5-encryption-should-be-put-out-of-our-misery/ >shown to be weak</a></li><li>The “optimal asymmetric encryption padding” (OAEP) scheme</li></ul><p>The default is to use the OAEP version, but the original is there to support any old log files that might have been encoded with PKCS 1.5.</p><h2>Blob Decryption</h2><p>Each log blob starts with an unencrypted header that contains metadata that defines how to decrypt the blob using AES. In particular, it holds the encrypted AES password mentioned above, as well as a AES initialization vector (IV)</p><p>After reading these header values, we can decrypt the AES password using an RSA cipher from the private key:</p><pre class=language-python><code class=language-python>cipher <span class="token operator">=</span> self<span class="token punctuation">.</span>cipherGenerator<span class="token punctuation">.</span>getCipher<span class="token punctuation">(</span><span class="token punctuation">)</span>
+decryptedKey <span class="token operator">=</span> cipher<span class="token punctuation">.</span>decrypt<span class="token punctuation">(</span>encryptedKey<span class="token punctuation">)</span>
+</code></pre><p>Next, we create a new AES cipher with the decrypted password and the initialization vector from the header. We also create a <a href=https://docs.python.org/2/library/zlib.html>zlib</a> decompressor for the compressed data:</p><pre class=language-python><code class=language-python>cipher <span class="token operator">=</span> AES<span class="token punctuation">.</span>new<span class="token punctuation">(</span>decryptedKey<span class="token punctuation">,</span> AES<span class="token punctuation">.</span>MODE_CBC<span class="token punctuation">,</span> IV<span class="token punctuation">)</span>
+decompressor <span class="token operator">=</span> zlib<span class="token punctuation">.</span>decompressobj<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">15</span><span class="token punctuation">)</span>
+</code></pre><p>The use of a negative argument in the <code>decompressobj</code> call suppresses the check for the standard gzip header (the C# code does not create one when compressing the log data). The value of <code>15</code> is the default window size setting, which unfortunately must be specified here to convey the header suppression.</p><p>With the initialization done, we can now decrypt and uncompress the blob data. In the loop below, we pass off the resulting log data to a scanner object which performs the text search.</p><pre class=language-python><code class=language-python><span class="token keyword">while</span> blob<span class="token punctuation">:</span>
+    block <span class="token operator">=</span> blob<span class="token punctuation">.</span>read<span class="token punctuation">(</span>self<span class="token punctuation">.</span>kReadBlockSize<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>block<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
+        block <span class="token operator">=</span> cipher<span class="token punctuation">.</span>decrypt<span class="token punctuation">(</span>block<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        block <span class="token operator">=</span> <span class="token string">''</span>
+        blob <span class="token operator">=</span> <span class="token boolean">None</span>
+    <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>decompressor<span class="token punctuation">.</span>unconsumed_tail<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
+        block <span class="token operator">=</span> decompressor<span class="token punctuation">.</span>unconsumed_tail <span class="token operator">+</span> block
+    <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>block<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
+        block <span class="token operator">=</span> decompressor<span class="token punctuation">.</span>decompress<span class="token punctuation">(</span>block<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>scanner<span class="token punctuation">.</span>scan<span class="token punctuation">(</span>block<span class="token punctuation">)</span>
+found <span class="token operator">=</span> self<span class="token punctuation">.</span>scanner<span class="token punctuation">.</span>getFound<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre><p>Due to the way the zlib decompressor works, we need to look for and prepend any unprocessed data before we continue to decompress.</p><p>Here is the complete source for the <code>LogDecryptor</code> class</p><pre class=language-python><code class=language-python><span class="token keyword">import</span> binascii<span class="token punctuation">,</span> json<span class="token punctuation">,</span> zlib
+<span class="token keyword">from</span> Crypto<span class="token punctuation">.</span>Cipher <span class="token keyword">import</span> AES
+<span class="token keyword">import</span> Logger
+
+<span class="token keyword">class</span> <span class="token class-name">LogDecryptor</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''Decrypts and inflates blobs and subjects the result to a scan for interesting log entries.
+    '''</span>
+
+    kBlockBitSize <span class="token operator">=</span> <span class="token number">128</span>
+    kReadBlockSize <span class="token operator">=</span> <span class="token number">256</span> <span class="token operator">*</span> <span class="token number">1024</span> <span class="token comment"># 256K</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> cipherGenerator<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">'''Initialize new instance
+        
+        cipherGenerator -- instance of CipherGenerator that can provide a new RSA decryption object
+        '''</span>
+        gLog<span class="token punctuation">.</span>begin<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>cipherGenerator <span class="token operator">=</span> cipherGenerator
+        self<span class="token punctuation">.</span>scanner <span class="token operator">=</span> <span class="token boolean">None</span>
+        gLog<span class="token punctuation">.</span>end<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">setScanner</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> scanner<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">'''Install a new log scanner to use in the LogDecryptor.scan method.
+        
+        scanner -- instance of LogScanner that will do the scanning of the unencrypted and inflated log data
+        '''</span>
+        gLog<span class="token punctuation">.</span>begin<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>scanner <span class="token operator">=</span> scanner
+        gLog<span class="token punctuation">.</span>end<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">scan</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> blob<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">'''Perform a scan of an encrypted and deflated blob.
+        
+        blob -- object that provide file-like behavior for reading blob data
+        '''</span>
+        gLog<span class="token punctuation">.</span>begin<span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span>
+
+        self<span class="token punctuation">.</span>scanner<span class="token punctuation">.</span>reset<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token comment"># Validate that the header is what we expect</span>
+        tag <span class="token operator">=</span> blob<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> tag <span class="token operator">!=</span> <span class="token string">'SN01:'</span><span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> RuntimeError<span class="token punctuation">,</span> <span class="token string">'Invalid file format: '</span> <span class="token operator">+</span>  tag
+
+        <span class="token comment"># Fetch the header length</span>
+        tmp <span class="token operator">=</span> <span class="token string">''</span>
+        <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+            c <span class="token operator">=</span> blob<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> c <span class="token operator">==</span> <span class="token string">':'</span><span class="token punctuation">:</span>
+                <span class="token keyword">break</span>
+            tmp <span class="token operator">+=</span> c
+
+        headerLength <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>tmp<span class="token punctuation">)</span>
+        gLog<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">'headerLength:'</span><span class="token punctuation">,</span> headerLength<span class="token punctuation">)</span>
+
+        <span class="token comment"># Fetch the header (ignored)</span>
+        header <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>blob<span class="token punctuation">.</span>read<span class="token punctuation">(</span>headerLength<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        gLog<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">'header:'</span><span class="token punctuation">,</span> header<span class="token punctuation">)</span>
+
+        secretLength <span class="token operator">=</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>blob<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        gLog<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">'secretLength:'</span><span class="token punctuation">,</span> secretLength<span class="token punctuation">)</span>
+
+        <span class="token comment"># Fetch the key that was used to encrypt the blob. It was encrypted with the private key in the cert. </span>
+        encryptedKey <span class="token operator">=</span> blob<span class="token punctuation">.</span>read<span class="token punctuation">(</span>secretLength <span class="token operator">*</span> <span class="token number">8</span><span class="token punctuation">)</span>
+        gLog<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">'len(encryptedKey):'</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>encryptedKey<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        gLog<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">'encryptedKey:'</span><span class="token punctuation">,</span> binascii<span class="token punctuation">.</span>hexlify<span class="token punctuation">(</span>encryptedKey<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        <span class="token comment"># Decrypt the key using the same private key</span>
+        cipher <span class="token operator">=</span> self<span class="token punctuation">.</span>cipherGenerator<span class="token punctuation">.</span>getCipher<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        decryptedKey <span class="token operator">=</span> cipher<span class="token punctuation">.</span>decrypt<span class="token punctuation">(</span>encryptedKey<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> decryptedKey <span class="token operator">==</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> RuntimeError<span class="token punctuation">,</span> <span class="token string">'Failed to decrypt key'</span>
+        gLog<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">'decryptedKey:'</span><span class="token punctuation">,</span> binascii<span class="token punctuation">.</span>hexlify<span class="token punctuation">(</span>decryptedKey<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        <span class="token comment"># Fetch the initialization vector that was used to encrypt with AES</span>
+        IV <span class="token operator">=</span> blob<span class="token punctuation">.</span>read<span class="token punctuation">(</span>self<span class="token punctuation">.</span>kBlockBitSize <span class="token operator">/</span> <span class="token number">8</span><span class="token punctuation">)</span>
+
+        <span class="token comment"># Creat new cipher that can decrypt the log contents</span>
+        cipher <span class="token operator">=</span> AES<span class="token punctuation">.</span>new<span class="token punctuation">(</span>decryptedKey<span class="token punctuation">,</span> AES<span class="token punctuation">.</span>MODE_CBC<span class="token punctuation">,</span> IV<span class="token punctuation">)</span>
+
+        <span class="token comment"># Create a streaming inflator for the log data after it is decrypted</span>
+        decompressor <span class="token operator">=</span> zlib<span class="token punctuation">.</span>decompressobj<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">15</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">while</span> blob <span class="token operator">!=</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+
+            <span class="token comment"># We read kReadBlockSize at a time so we don't start to swap to disk</span>
+            block <span class="token operator">=</span> blob<span class="token punctuation">.</span>read<span class="token punctuation">(</span>self<span class="token punctuation">.</span>kReadBlockSize<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>block<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
+
+                <span class="token comment"># Decrypt the block</span>
+                gLog<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">'read'</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>block<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'bytes'</span><span class="token punctuation">)</span>
+                block <span class="token operator">=</span> cipher<span class="token punctuation">.</span>decrypt<span class="token punctuation">(</span>block<span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                gLog<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">'EOF'</span><span class="token punctuation">)</span>
+                block <span class="token operator">=</span> <span class="token string">''</span>
+                blob <span class="token operator">=</span> <span class="token boolean">None</span>
+
+            <span class="token comment"># The zlib decompressor may have left-over data we need to consume</span>
+            <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>decompressor<span class="token punctuation">.</span>unconsumed_tail<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
+                gLog<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">'unconsumed:'</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>decompressor<span class="token punctuation">.</span>unconsumed_tail<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                block <span class="token operator">=</span> decompressor<span class="token punctuation">.</span>unconsumed_tail <span class="token operator">+</span> block
+
+            <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>block<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
+
+                <span class="token comment"># Inflate the unencrypted data and scan it</span>
+                block <span class="token operator">=</span> decompressor<span class="token punctuation">.</span>decompress<span class="token punctuation">(</span>block<span class="token punctuation">)</span>
+                self<span class="token punctuation">.</span>scanner<span class="token punctuation">.</span>scan<span class="token punctuation">(</span>block<span class="token punctuation">)</span>
+
+        found <span class="token operator">=</span> self<span class="token punctuation">.</span>scanner<span class="token punctuation">.</span>getFound<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        gLog<span class="token punctuation">.</span>end<span class="token punctuation">(</span><span class="token string">'found:'</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>found<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> found
+</code></pre></section><footer class=post-footer><figure class=author-image><a class=img href=https://keystrokecountdown.com style=background-image:url(/images/HarrisonsLaugh.png)><span class=hidden>Brad Howes's Picture</span></a></figure><section class=author><h4><a href=https://keystrokecountdown.com>Brad Howes</a></h4><p>Owner <a href=https://apps.apple.com/us/developer/b-ray-software/id430573224>B-Ray Software</a>. Programmer in C++, Swift, Python, Javascript and more. Started out doing punch cards in FORTRAN.</p><div class=author-meta><span class="author-location icon-location">Paris, France</span> <span class="author-link icon-link"><a href=http://linkedin.com/in/bradhowes>http://linkedin.com/in/bradhowes</a></span> <span class="author-link icon-feed"><a href=mailto:bradhowes@mac.com>&nbsp;Email Me</a></span></div></section><section class=share><h4>Share this page</h4><div class=social-icons><a class=icon-twitter href="https://twitter.com/intent/tweet?text=Decrypting%20Logs%20in%20Python&amp;url=https%3A%2Fkeystrokecountdown.com%2Farticles%2Fdecrypt%2Findex.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><span class=hidden>Twitter</span> </a><a class=icon-feed href="mailto:bradhowes@mac.com?subject=Curiosity&body=https%3A%2Fkeystrokecountdown.com%2Farticles%2Fdecrypt%2Findex.html"><span class=hidden>Email</span></a></div></section></footer></article></main><aside class=read-next><a class=read-next-story style="background-image: url(/articles/power/power.png)" href=/articles/power/index.html><section class=post><h2>Power of Optimal Algorithm Design</h2><div class=post-meta>A brief look at how a simple choice in algorithm implementation can greatly affect performance.</div></section></a><a class="read-next-story prev" style="background-image: url(/articles/Testing%20IPython/bug.png)" href="/articles/Testing IPython/testing-ipython.html"><section class=post><h2>Testing IPython</h2><div class=post-meta>Test page showing how to use IPython content to make a blog post.</div></section></a></aside><footer class="site-footer clearfix"><section class=copyright><a href=https://keystrokecountdown.com>Keystroke Countdown</a> &copy; <span id=copyrightYear>2016</span> Brad Howes — <a href=https://github.com/bradhowes/keystrokecountdown>Source</a></section></footer></div><script>(function () {
+      var installClickHandlers = function () {
+        var navElement = document.getElementById("nav");
+    
+        // The click handler just toggles classes to do the showing/hiding
+        //
+        var clickHandler = function(e) {
+          document.body.classList.toggle("nav-opened");
+          document.body.classList.toggle("nav-closed");
+          if (navElement) {
+            navElement.classList.toggle("nav-opened");
+            navElement.classList.toggle("nav-closed");
+          }
+        };
+    
+        // Find elements we wish to tap for click events
+        //
+        var elements = Array.prototype.slice.call(
+          document.querySelectorAll(".menu-button, .nav-cover, .nav-close"));
+        if (elements && elements.length > 0) {
+          elements.forEach(function (element) {
+            element.addEventListener('click', clickHandler);
+          });
+        }
+      };
+    
+      // When the document is finished loading, install event handlers to show/hide sidebar menu
+      //
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        installClickHandlers();
+    
+        // Set the copyright year at the bottom of our pages
+        //
+        window.document.getElementById("copyrightYear").innerHTML = (new Date()).getFullYear();
+      });
+    })();</script></body></html>
