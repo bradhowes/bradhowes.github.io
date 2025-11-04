@@ -1,3 +1,12 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d49710465dce35e3e281e7bfc8f4fc556f7b0de41b6f0303f29c518bf11147d5
-size 270
+# humanstxt.org/
+
+/* TEAM */
+Owner: Brad Howes
+Twitter: @__BRH__
+Location: Prague, Czech Republic
+
+/* SITE */
+Last update: 2016/05/12
+Standards: HTML5, CCS3
+Components: KaTex
+Software: metalsmith.io + friends, remarkable markdown processor, notebookjs IPython processor
