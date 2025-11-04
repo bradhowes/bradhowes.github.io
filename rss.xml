@@ -4,19 +4,11 @@
         <description>Sporadic musings on software, algorithms, platforms</description>
         <link>https://keystrokecountdown.com</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Fri, 21 Jul 2023 19:26:36 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 04 Nov 2025 16:36:49 GMT</lastBuildDate>
         <atom:link href="https://keystrokecountdown.com/rss.xml" rel="self" type="application/rss+xml"/>
         <copyright>Copyright © 2016, Brad Howes</copyright>
         <language>en</language>
         <managingEditor>bradhowes@mac.com</managingEditor>
-        <item>
-            <title>AUv3 Development -- Part 1 of N</title>
-            <description>Lame attempt to share what I've learned about AUv3 audio units</description>
-            <link>https://keystrokecountdown.com/articles/auv3/index.html</link>
-            <guid isPermaLink="true">https://keystrokecountdown.com/articles/auv3/index.html</guid>
-            <dc:creator>Brad Howes</dc:creator>
-            <pubDate>Tue, 16 May 2023 10:18:02 GMT</pubDate>
-        </item>
         <item>
             <title>Swift Snapshot Testing in Github Actions</title>
             <description>Short discussion on how I run snapshot tests in Github CI</description>
