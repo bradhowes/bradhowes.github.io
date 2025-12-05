@@ -4,11 +4,19 @@
         <description>Sporadic musings on software, algorithms, platforms</description>
         <link>https://keystrokecountdown.com</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Tue, 04 Nov 2025 16:43:17 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 05 Dec 2025 21:38:23 GMT</lastBuildDate>
         <atom:link href="https://keystrokecountdown.com/rss.xml" rel="self" type="application/rss+xml"/>
         <copyright>Copyright © 2016, Brad Howes</copyright>
         <language>en</language>
         <managingEditor>bradhowes@mac.com</managingEditor>
+        <item>
+            <title>[DRAFT] AUv3 Development -- Part 1 of N</title>
+            <description>Lame attempt to share what I've learned about AUv3 audio units</description>
+            <link>https://keystrokecountdown.com/articles/auv3/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/auv3/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Tue, 16 May 2023 10:18:02 GMT</pubDate>
+        </item>
         <item>
             <title>Swift Snapshot Testing in Github Actions</title>
             <description>Short discussion on how I run snapshot tests in Github CI</description>
@@ -96,6 +104,22 @@
             <guid isPermaLink="true">https://keystrokecountdown.com/articles/console/index.html</guid>
             <dc:creator>Brad Howes</dc:creator>
             <pubDate>Fri, 16 Mar 2018 09:06:00 GMT</pubDate>
+        </item>
+        <item>
+            <title>[DRAFT] Test Page for CSS Settings</title>
+            <description>Document to validate changes to CSS configuration</description>
+            <link>https://keystrokecountdown.com/articles/layout/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/layout/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Wed, 14 Mar 2018 11:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>[DRAFT] Playing with .Net Core Apps and Docker on a Mac</title>
+            <description>A brief look at using Docker containers to run a C# app</description>
+            <link>https://keystrokecountdown.com/articles/docker/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/docker/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Wed, 14 Mar 2018 11:18:02 GMT</pubDate>
         </item>
         <item>
             <title>Different (Key)strokes for Different Folks</title>
