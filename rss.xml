@@ -4,7 +4,7 @@
         <description>Sporadic musings on software, algorithms, platforms</description>
         <link>https://keystrokecountdown.com</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Thu, 18 Dec 2025 09:41:09 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 18 Dec 2025 09:45:22 GMT</lastBuildDate>
         <atom:link href="https://keystrokecountdown.com/rss.xml" rel="self" type="application/rss+xml"/>
         <copyright>Copyright © 2016, Brad Howes</copyright>
         <language>en</language>
@@ -67,7 +67,7 @@
         </item>
         <item>
             <title>Text Language Translation Utility</title>
-            <description>Brief discussion of Node.js utility I use on macOS to translate text between French and English</description>
+            <description>Brief discussion of a utility I use on macOS to quickly translate text between French and English</description>
             <link>https://keystrokecountdown.com/articles/translate/index.html</link>
             <guid isPermaLink="true">https://keystrokecountdown.com/articles/translate/index.html</guid>
             <dc:creator>Brad Howes</dc:creator>
