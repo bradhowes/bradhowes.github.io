@@ -4,11 +4,27 @@
         <description>Sporadic musings on software, algorithms, platforms</description>
         <link>https://keystrokecountdown.com</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Mon, 25 May 2026 18:23:58 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 22 Oct 2026 21:05:28 GMT</lastBuildDate>
         <atom:link href="https://keystrokecountdown.com/rss.xml" rel="self" type="application/rss+xml"/>
         <copyright>Copyright © 2016, Brad Howes</copyright>
         <language>en</language>
         <managingEditor>bradhowes@mac.com</managingEditor>
+        <item>
+            <title>Hyper Modifier for Emacs on macOS</title>
+            <description>Instructions for seeing a 'hyper' modifier in Emacs on macOS</description>
+            <link>https://keystrokecountdown.com/articles/hyper/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/hyper/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Thu, 22 Oct 2026 22:18:02 GMT</pubDate>
+        </item>
+        <item>
+            <title>HelpInfoOverlay Package</title>
+            <description>What the package does, and how it does it.</description>
+            <link>https://keystrokecountdown.com/articles/HelpInfoOverlay/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/HelpInfoOverlay/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Tue, 26 May 2026 22:18:02 GMT</pubDate>
+        </item>
         <item>
             <title>Swift Snapshot Testing in Github Actions</title>
             <description>Short discussion on how I run snapshot tests in Github CI</description>
