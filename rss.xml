@@ -4,11 +4,19 @@
         <description>Sporadic musings on software, algorithms, platforms</description>
         <link>https://keystrokecountdown.com</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sat, 24 Oct 2026 12:15:28 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 25 Oct 2026 18:21:12 GMT</lastBuildDate>
         <atom:link href="https://keystrokecountdown.com/rss.xml" rel="self" type="application/rss+xml"/>
         <copyright>Copyright © 2016, Brad Howes</copyright>
         <language>en</language>
         <managingEditor>bradhowes@mac.com</managingEditor>
+        <item>
+            <title>Playing with Emacs Calc</title>
+            <description>Example of scripting Emacs Calc</description>
+            <link>https://keystrokecountdown.com/articles/calc/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/calc/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Sun, 25 Oct 2026 22:18:02 GMT</pubDate>
+        </item>
         <item>
             <title>Hyper Modifier for Emacs on macOS</title>
             <description>Instructions for seeing a 'hyper' modifier in Emacs on macOS</description>

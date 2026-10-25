@@ -1,0 +1,231 @@
+<!DOCTYPE html><html xmlns=http://www.w3.org/1999/xhtml><head><meta charset=utf-8><meta name=generator content="pandoc 3.12.1"><meta name=viewport content="width=device-width,initial-scale=1,user-scalable=yes"><meta name=author content="Brad Howes"><meta name=description content="Example of scripting Emacs Calc"><title>Playing with Emacs Calc</title><style>/* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
+      background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a, a:visited {
+      color: inherit;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
+      color: #606060;
+      color: light-dark(#606060, #b6b6b6);
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid currentColor;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+    }
+    th {
+      border-top: 1px solid currentColor;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }</style></head><body><header id=title-block-header><h1 class=title>Playing with Emacs Calc</h1><p class=author>Brad Howes</p><p class=date>2026-10-25 23:18:02+01:00</p></header><h1 id=using-calc-in-emacs>Using Calc in Emacs</h1><p>I had a calculation I wanted to perform using data I had pasted into a Markdown document. After a brief search in <a href=https://www.gnu.org/software/emacs/ >Emacs</a> help, I ended up just using <code>M-x quick-calc</code> and pasting in the result. But then I thought that Emacs <a href=https://www.gnu.org/software/emacs/manual/html_mono/calc.html>calc</a> would have facilities to do this inline. It does, but the documentation is a bit confusing and I think misleading.</p><p>First, Emacs <code>calc</code> is incredibly powerful if a bit hard to get to know. There is a <a href=https://www.gnu.org/software/emacs/manual/html_mono/calc.html#Tutorial>tutorial</a>, but it covers the use of <code>calc</code> as an application within Emacs. I did not want to learn that; I just wanted to treat a region of text as a mathematical expression and evaluate it for a result. I found <a href=https://www.gnu.org/software/emacs/manual/html_mono/calc.html#Embedded-Mode-1>calc-embedded</a> which at first seemed like a good prospect, but then my eyes glazed over with the discussion of the modes. I was able to get some stuff to parse and evaluate, like below:</p><pre><code>This is $ sin(0.3) $ a test.</code></pre><p>Putting the cursor <em>between</em> the two <code>$</code> characters and then executing <code>C-x * e</code> (<code>calc-embedded</code>) would replace the <code>sine(0.3)</code> with a value:</p><pre><code>This is $ 5.23596383142e-3 $ a test.</code></pre><blockquote><p>NOTE: after performing <code>C-x * e</code> you are left in <em>Embedded Calc mode</em>, and you are asked to perform another <code>C-x * e</code> to exit it. Much easier to just type <code>q</code>. However, <code>calc</code> failed to do anything your pointer may have moved and you would <strong>not</strong> be in <em>Embedded Calc mode</em>.</p></blockquote><p>This is a pain, since I don't want the remaining <code>$</code> characters -- I just want the result.</p><p>According to the documentation for <code>calc-embedded</code>:</p><blockquote><p>With a prefix argument of zero, Calc uses the current region (delimited by point and mark) instead of formula delimiters. With a prefix argument of C-u only, Calc uses the current line as the formula.</p></blockquote><p>Only the first worked for me -- usually. Doing it twice in a row always failed the second time. And when it did succeed, I often forgot to exit the embedded mode before continuing on. When attempting to evaluate the line via <code>C-u C-x * e</code> on the following line</p><pre><code>3 + 8 * 13 / 2</code></pre><p>I receive the error <code>Expected a number</code> no matter where the cursor was.</p><h1 id=try-again>Try Again</h1><p>I decided to search for what others were able to come up with. I landed on a page from Mickey Petersen's excellent <a href=https://www.masteringemacs.org/article/fun-emacs-calc>Mastering Emacs</a> blog. Here, he shows how one can use <code>calc-eval</code> to evaluate the contents of a string and receive a result from <code>calc</code>. This seemed workable -- I can easily pull out a string from a buffer between <code>mark</code> and <code>point</code> and replace it with the results of <code>calc-eval</code>.</p><p>But first I digressed and fell into following various attempts to convert latitude and longitude string values into floating-point values. Here's the Mastering Emacs solution:</p><pre class=emacs-lisp><code>(defun hms-to-dec (hms-str)
+  (let ((hms (split-string hms-str &quot;[°′″NW ]&quot; t)))
+    (flet ((to-deg ()
+                   (string-to-number
+                    (calc-eval (format &quot;deg(%s@ %s&#39; %s\&quot;)&quot;
+                                       (pop hms) (pop hms) (pop hms))))))
+          (list (to-deg) (to-deg)))))</code></pre><p>And here is a non-calc version from the <a href="https://irreal.org/blog/?p=795">Irreal blog</a>:</p><pre class=emacs-lisp><code>(require &#39;cl)
+
+(defun decimalize-lat-lon (lat-lon)
+  &quot;Decimalize latitude longitude
+\&quot;37°26′36.42″N 06°15′14.28″W\&quot; --&gt; (37.44345 -6.253966666666667)&quot;
+  (let (result)
+    (dolist (ll (split-string lat-lon &quot; +&quot;))
+      (destructuring-bind (deg min sec dir)
+          (split-string ll &quot;[°′″]&quot;)
+        (if (string= &quot;&quot; dir) (error &quot;malformed lat-lon %s&quot; ll))
+        (let ((factor (if (member dir &#39;(&quot;S&quot; &quot;W&quot;)) -1 1)))
+          (push (* factor (+ (string-to-number deg)
+                             (/ (string-to-number min) 60.0)
+                             (/ (string-to-number sec) 3600.0))) result))))
+    (reverse result)))
+</code></pre><blockquote><p>NOTE: the <a href=https://xahlee.blogspot.com/2012/04/programing-problem-decimalize-latitude.html>source</a> of the "challenge" to do this conversion is no longer a valid link.</p></blockquote><p>First, I loved learning about <code>destructuring-bind</code> though now it is found with the prefix <code>cl-</code>. Secoond, the <code>calc</code> solution from Petersen is incorrect: it does not properly account for direction: N/S for latitude and E/W for longitude. These suffixes get dropped during the splitting of the string into its component parts.</p><p>Here is my take using a more functional approach:</p><pre class=emacs-lisp><code>(defun hms-to-dec (lat-lon &amp;optional allow-neg)
+  &quot;Convert latitude and logitude LAT-LON into two decimal values.
+A latitude and longitude consists of three (3) components: degrees,
+minutes, and seconds. All are floating point values but they have
+different suffixes. Degrees end with `°&#39;, minutes end with `\&#39;&#39; and
+seconds end with `\&quot;&#39; followed by a direction indicator: `N/S&#39; for
+latitude and `E/W&#39; for longitude. If ALLOW-NEG is not nil, then
+direction indicators are not present; instead the sign of the degrees
+value indicates the direction.
+
+Examples:
+- (hms-to-dec \&quot;37°26&#39;36.42\&quot;N 06°15&#39;14.28\&quot;W\&quot;) -&gt; (37.44345 -6.25396666667).
+- (hms-to-dec \&quot;37°26&#39;36.42\&quot; -06°15&#39;14.28\&quot;\&quot;, t) -&gt; (37.44345 -6.25396666667).&quot;
+  (let* ((args-len (if allow-neg 3 4))
+         (args-list (seq-partition (split-string lat-lon &quot;[°&#39;\&quot; ]&quot; t) args-len))
+         (len-list (mapcar &#39;length args-list)))
+    (when (or (/= (length len-list) 2)
+              (any (lambda (len) (/= len args-len)) len-list))
+      (error &quot;Malformed lat-lon value %s&quot; lat-lon))
+    (mapcar (lambda (args)
+              (seq-let (h m s d) args
+                (string-to-number (calc-eval (format &quot;deg(%s@ %s&#39; %s\&quot;)*%d&quot; h m s
+                                                     (if (member d &#39;(&quot;S&quot; &quot;W&quot;)) -1 1))))))
+            args-list)))</code></pre><p>First, I do much like the others and split the string into pieces, leaving any direction indicators. When the <code>allow-neg</code> option is nil (default), there must be 4 components per coordinate: degrees, minutes, seconds, and direction. The original split results in 8 components, so I partition them into two collections of 4 each via <code>seq-partition</code>.</p><p>Next, like Irreal, I validate the input by checking sequence lengths (better would be to verify the values for each component). Finally, I do pretty much what Petersen and invoke <code>calc-eval</code> twice, once for the latitude and then once for the longitude. Pretty sure that could be done in one shot, but this works well.</p><p>My routine does allow for providing negative decimal values instead of stating the direction with a suffix. It also uses a more succinct <code>seq-let</code> to destructure. Here are some calls to the <code>hms-to-dec</code> routine:</p><pre class=emacs-lisp><code>(hms-to-dec &quot;37°26&#39;36.42\&quot;N 06°15&#39;14.28\&quot;W&quot;)
+(37.44345 -6.25396666667)
+(hms-to-dec &quot;37°26&#39;36.42\&quot; -06°15&#39;14.28\&quot;&quot; t)
+(37.44345 -6.25396666667)
+(hms-to-dec &quot;37°26&#39;36.42\&quot;N 06°15&#39;14.28\&quot;&quot;)
+(error &quot;Malformed lat-lon value 37°26&#39;36.42\&quot;N 06°15&#39;14.28\&quot;&quot;)</code></pre><h1 id=calc-in-markdown>Calc in Markdown</h1><p>Now back to solving my original issue: selecting an expression in a Markdown document, evaluating it with <code>calc</code>, and substituting the result for the selection:</p><pre class=emacs-lisp><code>(defun my/markdown-calc-eval (start end)
+  &quot;Treat text in range START END as calc expression.
+Replace selection with evaluation result.&quot;
+  (interactive &quot;r&quot;)
+  (when (and start end)
+    (let* ((eq (buffer-substring-no-properties start end))
+           (result (calc-eval eq)))
+      (if (stringp result)
+          (replace-region-contents start end result)
+        (message &quot;%s&quot; (cadr result))))))</code></pre><p>Here we work on the active region, getting the string from the buffer, and then asking <code>calc-eval</code> for the result. If the response is a string (from documentation) then replace the selection with it. Otherwise, it should be a list of 2 elements, the second being an error string; display that.</p></body></html>
