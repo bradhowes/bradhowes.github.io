@@ -4,11 +4,19 @@
         <description>Sporadic musings on software, algorithms, platforms</description>
         <link>https://keystrokecountdown.com</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Tue, 27 Oct 2026 19:17:14 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 28 Oct 2026 20:42:49 GMT</lastBuildDate>
         <atom:link href="https://keystrokecountdown.com/rss.xml" rel="self" type="application/rss+xml"/>
         <copyright>Copyright © 2016, Brad Howes</copyright>
         <language>en</language>
         <managingEditor>bradhowes@mac.com</managingEditor>
+        <item>
+            <title>Emacs Markdown Editing and Viewing</title>
+            <description>Discussing sone customizations to markdown-mode</description>
+            <link>https://keystrokecountdown.com/articles/markdown-ts-mode/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/markdown-ts-mode/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Wed, 28 Oct 2026 09:06:00 GMT</pubDate>
+        </item>
         <item>
             <title>Playing with Emacs Calc</title>
             <description>Example of scripting Emacs Calc</description>
