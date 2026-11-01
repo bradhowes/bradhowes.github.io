@@ -4,11 +4,19 @@
         <description>Sporadic musings on software, algorithms, platforms</description>
         <link>https://keystrokecountdown.com</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Wed, 28 Oct 2026 22:08:06 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 01 Nov 2026 00:35:49 GMT</lastBuildDate>
         <atom:link href="https://keystrokecountdown.com/rss.xml" rel="self" type="application/rss+xml"/>
         <copyright>Copyright © 2016, Brad Howes</copyright>
         <language>en</language>
         <managingEditor>bradhowes@mac.com</managingEditor>
+        <item>
+            <title>Selecting Bluetooth Audio Devices with Keyboard Maestro</title>
+            <description>Convoluted way to use a keyboard to select a Bluetooth device</description>
+            <link>https://keystrokecountdown.com/articles/btaudio/index.html</link>
+            <guid isPermaLink="true">https://keystrokecountdown.com/articles/btaudio/index.html</guid>
+            <dc:creator>Brad Howes</dc:creator>
+            <pubDate>Sat, 31 Oct 2026 22:18:02 GMT</pubDate>
+        </item>
         <item>
             <title>Emacs Markdown Editing and Viewing</title>
             <description>Discussing sone customizations to markdown-mode</description>
